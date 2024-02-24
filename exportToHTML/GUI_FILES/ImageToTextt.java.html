@@ -1,0 +1,106 @@
+<html>
+<head>
+<title>ImageToTextt.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #7a7e85;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ImageToTextt.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">Core</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">Mat</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileNotFoundException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">HashMap</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">imgcodecs</span><span class="s2">.</span><span class="s1">Imgcodecs</span><span class="s2">.</span><span class="s1">imread</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">Core</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">imgcodecs</span><span class="s2">.</span><span class="s1">Imgcodecs</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">ImageToTextt </span><span class="s2">{</span>
+
+    <span class="s0">static </span><span class="s2">{</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">loadLibrary</span><span class="s2">(</span><span class="s1">Core</span><span class="s2">.</span><span class="s1">NATIVE_LIBRARY_NAME</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static final </span><span class="s1">HashMap</span><span class="s2">&lt;</span><span class="s1">Long</span><span class="s2">, </span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">imagetotext</span><span class="s2">;</span>
+
+    <span class="s0">static </span><span class="s2">{</span>
+        <span class="s1">imagetotext </span><span class="s2">= </span><span class="s0">new </span><span class="s1">HashMap</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">String filePath </span><span class="s2">= </span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Speech To Text</span><span class="s0">\\</span><span class="s3">Sphinx extract</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s3">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s3">src</span><span class="s0">\\</span><span class="s3">GUI_FILES</span><span class="s0">\\</span><span class="s3">outputfiled file.txt&quot;</span><span class="s2">;</span>
+        <span class="s1">uploadHashMapFromFile</span><span class="s2">(</span><span class="s1">filePath</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static long </span><span class="s1">calculateImageSum</span><span class="s2">(</span><span class="s1">String imagePath</span><span class="s2">) {</span>
+        <span class="s4">// Load the image</span>
+        <span class="s1">Mat image </span><span class="s2">= </span><span class="s1">Imgcodecs</span><span class="s2">.</span><span class="s1">imread</span><span class="s2">(</span><span class="s1">imagePath</span><span class="s2">);</span>
+        <span class="s0">long </span><span class="s1">sum </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">r </span><span class="s2">= </span><span class="s5">0</span><span class="s2">; </span><span class="s1">r </span><span class="s2">&lt; </span><span class="s1">image</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(); </span><span class="s1">r</span><span class="s2">++) {</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">c </span><span class="s2">= </span><span class="s5">0</span><span class="s2">; </span><span class="s1">c </span><span class="s2">&lt; </span><span class="s1">image</span><span class="s2">.</span><span class="s1">width</span><span class="s2">(); </span><span class="s1">c</span><span class="s2">++) {</span>
+                <span class="s0">double</span><span class="s2">[] </span><span class="s1">colors </span><span class="s2">= </span><span class="s1">image</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">r</span><span class="s2">, </span><span class="s1">c</span><span class="s2">);</span>
+                <span class="s0">for </span><span class="s2">(</span><span class="s0">double </span><span class="s1">v </span><span class="s2">: </span><span class="s1">colors</span><span class="s2">) {</span>
+                    <span class="s1">sum </span><span class="s2">+= (</span><span class="s0">long</span><span class="s2">) </span><span class="s1">v</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s1">sum</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">String getStringfromImage</span><span class="s2">(</span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">ImagePath</span><span class="s2">) {</span>
+        <span class="s1">StringBuilder stringBuilder </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StringBuilder</span><span class="s2">();</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">String imagePath </span><span class="s2">: </span><span class="s1">ImagePath</span><span class="s2">) {</span>
+            <span class="s1">String text </span><span class="s2">= </span><span class="s1">imagetotext</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">calculateImageSum</span><span class="s2">(</span><span class="s1">imagePath</span><span class="s2">));</span>
+            <span class="s1">stringBuilder</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s3">&quot; &quot;</span><span class="s2">).</span><span class="s1">append</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s1">stringBuilder</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">uploadHashMapFromFile</span><span class="s2">(</span><span class="s1">String filePath</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">(</span><span class="s1">Scanner scanner </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">filePath</span><span class="s2">))) {</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">hasNextLine</span><span class="s2">()) {</span>
+                <span class="s1">String</span><span class="s2">[] </span><span class="s1">parts </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">().</span><span class="s1">split</span><span class="s2">(</span><span class="s3">&quot;,&quot;</span><span class="s2">);</span>
+                <span class="s0">try </span><span class="s2">{</span>
+                    <span class="s0">long </span><span class="s1">key </span><span class="s2">= </span><span class="s1">Long</span><span class="s2">.</span><span class="s1">parseLong</span><span class="s2">(</span><span class="s1">parts</span><span class="s2">[</span><span class="s5">1</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">());</span>
+                    <span class="s1">String value </span><span class="s2">= </span><span class="s1">parts</span><span class="s2">[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">imagetotext</span><span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s1">key</span><span class="s2">, </span><span class="s1">value</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">NumberFormatException e</span><span class="s2">) {</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Invalid format for key: &quot; </span><span class="s2">+ </span><span class="s1">parts</span><span class="s2">[</span><span class="s5">1</span><span class="s2">]);</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+
+
+
+
+
+
+
+
+
+
+
+</pre>
+</body>
+</html>

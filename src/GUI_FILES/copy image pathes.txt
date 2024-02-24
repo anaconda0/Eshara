@@ -1,0 +1,195 @@
+Alphapet/A.jpg
+Alphapet/B.jpg
+Alphapet/C.jpg
+Alphapet/D.jpg
+Alphapet/E.jpg
+Alphapet/F.jpg
+Alphapet/G.jpg
+Alphapet/H.jpg
+Alphapet/I.jpg
+Alphapet/J.jpg
+Alphapet/K.jpg
+Alphapet/L.jpg
+Alphapet/M.jpg
+Alphapet/N.jpg
+Alphapet/O.jpg
+Alphapet/P.jpg
+Alphapet/Q.jpg
+Alphapet/R.jpg
+Alphapet/S.jpg
+Alphapet/T.jpg
+Alphapet/U.jpg
+Alphapet/V.jpg
+Alphapet/W.jpg
+Alphapet/X.jpg
+Alphapet/Y.jpg
+Alphapet/Z.jpg
+C:\Users\yhayt\Desktop\Semester 3\OneNot Notebooks\Object Oriented Programming (CCS2303)\Material\HandsTalk Project\project update-20240102T115331Z-001\project update\image to text images\zero.png
+Alphapet/1.jpg
+Alphapet/2.jpg
+Alphapet/3.jpg
+Alphapet/4.jpg
+Alphapet/5.jpg
+Alphapet/6.jpg
+Alphapet/7.jpg
+Alphapet/8.jpg
+Alphapet/9.jpg
+New Images/New sign language/Cold.jpeg
+New Images/Screenshots/Color.png
+New Images/Screenshots/COME.png
+New Images/New sign language/Computer.png
+New Images/Screenshots/COUNT.png
+New Images/Screenshots/COUSIN.png
+New Images/Screenshots/CRAKER.png
+New Images/Screenshots/Dance.png
+New Images/Screenshots/Dark.png
+New Images/Screenshots/DEER.png
+New Images/New sign language/Doctor.png
+New Images/Screenshots/doll.png
+New Images/Screenshots/dont.png
+New Images/Screenshots/Dream.png
+New Images/Screenshots/Dress.png
+New Images/Screenshots/Drink.png
+New Images/Screenshots/Drop.png
+New Images/Screenshots/Earing.png
+New Images/Screenshots/Eat.png
+New Images/Screenshots/Elephant.png
+New Images/New sign language/Enjoy.jpg
+New Images/New sign language/Exam.png
+New Images/New sign language/Excited.png
+New Images/New sign language/Excuse Me.png
+New Images/Screenshots/Exersize.png
+New Images/Screenshots/Family.png
+New Images/Screenshots/Find.png
+New Images/Screenshots/Finished.png
+New Images/New sign language/Fire.jpg
+New Images/Screenshots/Flashlight.png
+New Images/Screenshots/Fly.png
+New Images/New sign language/Friend.png
+New Images/New sign language/Frog.jpg
+New Images/New sign language/Fruit.jpg
+New Images/Screenshots/Fun.png
+New Images/Screenshots/Garage.png
+New Images/Screenshots/Garden.png
+New Images/Screenshots/Girl.png
+New Images/New sign language/Give.jpg
+New Images/New sign language/GO.jpg
+New Images/New sign language/God.png
+New Images/New sign language/GOOD NIGHT.png
+New Images/Screenshots/GoodMorning.png
+New Images/New sign language/Goose.jpeg
+New Images/Screenshots/Grandfather.png
+New Images/Screenshots/Grandmother.png
+New Images/Screenshots/Gross.png
+New Images/Screenshots/Hair.png
+New Images/New sign language/Happy.png
+New Images/Screenshots/Hat.png
+New Images/New sign language/Have.png
+New Images/New sign language/Hear.png
+New Images/New sign language/Heart.jpg
+C:\Users\yhayt\Desktop\Semester 3\OneNot Notebooks\Object Oriented Programming (CCS2303)\Material\HandsTalk Project\project update-20240102T115331Z-001\project update\image to text images\hi.jpg
+New Images/Screenshots/Hit.png
+New Images/New sign language/Holiday.png
+New Images/New sign language/HOSPITAL.png
+New Images/Screenshots/Hot.png
+New Images/Screenshots/HowMuch.png
+C:\Users\yhayt\Desktop\Semester 3\OneNot Notebooks\Object Oriented Programming (CCS2303)\Material\HandsTalk Project\project update-20240102T115331Z-001\project update\image to text images\how-webp.png
+New Images/New sign language/Hungry.jpg
+New Images/New sign language/I Love You.jpg
+C:\Users\yhayt\Desktop\Semester 3\OneNot Notebooks\Object Oriented Programming (CCS2303)\Material\HandsTalk Project\project update-20240102T115331Z-001\project update\image to text images\images.png
+New Images/Screenshots/Juice.png
+New Images/Screenshots/Kiss.png
+New Images/New sign language/Laptop.png
+New Images/Screenshots/laundry.png
+New Images/Screenshots/Light.png
+New Images/New sign language/Like.png
+New Images/New sign language/Listen.png
+New Images/Screenshots/Litter.png
+New Images/Screenshots/lookUP.png
+New Images/Screenshots/Mad.png
+New Images/Screenshots/MILK.png
+New Images/New sign language/Monster.jpeg
+New Images/New sign language/Moon.jpg
+New Images/New sign language/MORE.jpg
+New Images/New sign language/Nice.png
+New Images/New sign language/Night.jpg
+New Images/New sign language/Nurse.png
+New Images/New sign language/Old.jpg
+New Images/New sign language/On.png
+New Images/New sign language/Outside.jpg
+New Images/New sign language/Phone.png
+New Images/New sign language/Pink.jpg
+New Images/New sign language/Playground.jpg
+New Images/New sign language/please.jpg
+New Images/New sign language/PRACTICE.png
+New Images/New sign language/Pray.png
+New Images/New sign language/Rice.jpg
+New Images/New sign language/Run.png
+New Images/New sign language/Same.jpg
+New Images/New sign language/SATURDAY.png
+New Images/Screenshots/School.png
+New Images/New sign language/Science.png
+New Images/New sign language/Seal.jpeg
+New Images/New sign language/See.jpg
+New Images/New sign language/Shirt.jpeg
+New Images/New sign language/Sick.png
+New Images/New sign language/Sign.png
+New Images/New sign language/Sister.jpg
+New Images/Screenshots/Small.png
+New Images/New sign language/Smart.png
+New Images/New sign language/Smell.png
+New Images/Screenshots/Smelly.png
+New Images/New sign language/Smile.jpeg
+New Images/New sign language/Sorry.jpg
+New Images/New sign language/Stars.jpeg
+New Images/New sign language/Start.png
+New Images/New sign language/Sun.jpg
+New Images/New sign language/SUNDAY.png
+New Images/New sign language/Swim.png
+New Images/New sign language/Talk.png
+New Images/New sign language/Thank you.png
+New Images/New sign language/THANKSGIVING.png
+New Images/New sign language/Thirsty.jpg
+New Images/New sign language/Touch.png
+New Images/Screenshots/UMBRELLA.png
+New Images/New sign language/Uncle.jpg
+New Images/New sign language/Use.png
+New Images/New sign language/VEHICLE.png
+New Images/New sign language/Walk.png
+New Images/New sign language/Want.jpg
+New Images/New sign language/Water.jpg
+New Images/New sign language/Wedding.png
+New Images/Screenshots/WELCOME.png
+New Images/New sign language/What.jpeg
+New Images/New sign language/When.jpeg
+C:\Users\yhayt\Desktop\Semester 3\OneNot Notebooks\Object Oriented Programming (CCS2303)\Material\HandsTalk Project\project update-20240102T115331Z-001\project update\image to text images\who.png
+New Images/New sign language/Woman.jpg
+New Images/New sign language/Write.png
+New Images/New sign language/Yes.jpg
+New Images/New sign language/Yogurt.jpg
+New Images/Screenshots/Afraid.png
+New Images/Screenshots/Again.png
+New Images/Screenshots/Ambulance.png
+New Images/Screenshots/Angry.png
+New Images/Screenshots/Animal.png
+New Images/Screenshots/Apple.png
+New Images/Screenshots/Aunt.png
+New Images/Screenshots/Baby.png
+New Images/Screenshots/BAD.png
+New Images/Screenshots/Ball.png
+New Images/Screenshots/bandage.png
+New Images/New sign language/Bathroom.png
+New Images/New sign language/Be careful.png
+New Images/Screenshots/Bell.png
+New Images/Screenshots/Birthday.png
+New Images/New sign language/Boy.jpg
+New Images/New sign language/Brother.jpg
+New Images/Screenshots/Butterfly.png
+New Images/New sign language/BYE-BYE.png
+New Images/New sign language/Cake.png
+New Images/Screenshots/camera.png
+New Images/New sign language/Can.png
+New Images/New sign language/Cat.jpg
+New Images/New sign language/CELEBRATE.png
+New Images/Screenshots/CHICKEN.png
+New Images/New sign language/Children.png

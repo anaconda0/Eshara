@@ -1,0 +1,266 @@
+<html>
+<head>
+<title>ImageToTextGUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #2aacb8;}
+.s4 { color: #7a7e85;}
+.s5 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ImageToTextGUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">Core</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">TextToSpeechUI</span><span class="s2">.</span><span class="s1">createStyledButton</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">ImageToTextGUI </span><span class="s2">{</span>
+    <span class="s0">static </span><span class="s2">{</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">loadLibrary</span><span class="s2">(</span><span class="s1">Core</span><span class="s2">.</span><span class="s1">NATIVE_LIBRARY_NAME</span><span class="s2">);</span>
+    <span class="s2">}</span>
+    <span class="s0">private static class </span><span class="s1">MyButton </span><span class="s0">implements </span><span class="s1">Comparable</span><span class="s2">&lt;</span><span class="s1">MyButton</span><span class="s2">&gt;{</span>
+        <span class="s0">public </span><span class="s1">String path</span><span class="s2">;</span>
+        <span class="s0">public </span><span class="s1">ImageIcon icon</span><span class="s2">;</span>
+        <span class="s0">public boolean </span><span class="s1">isSelected </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+        <span class="s0">public  </span><span class="s1">JToggleButton button</span><span class="s2">;</span>
+        <span class="s0">public static int </span><span class="s1">order </span><span class="s2">= </span><span class="s3">0</span><span class="s2">;</span>
+        <span class="s0">public int </span><span class="s1">myOrder</span><span class="s2">=-</span><span class="s3">1</span><span class="s2">;</span>
+        <span class="s0">public </span><span class="s1">String label</span><span class="s2">; </span><span class="s4">// Corresponding letter or number</span>
+        <span class="s0">private </span><span class="s1">JTextArea textArea</span><span class="s2">; </span><span class="s4">// Reference to the textArea</span>
+
+
+        <span class="s1">MyButton</span><span class="s2">(</span><span class="s1">String imgPath</span><span class="s2">, </span><span class="s1">JTextArea textArea</span><span class="s2">) {</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">textArea </span><span class="s2">= </span><span class="s1">textArea</span><span class="s2">;</span>
+            <span class="s4">// Extract the letter or number from the image path</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">label </span><span class="s2">= </span><span class="s1">extractLabelFromPath</span><span class="s2">(</span><span class="s1">imgPath</span><span class="s2">);</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">icon </span><span class="s2">= </span><span class="s1">createImageIcon</span><span class="s2">(</span><span class="s1">imgPath</span><span class="s2">); </span><span class="s4">// Adjust the path</span>
+            <span class="s1">Image scaledImage </span><span class="s2">= </span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">().</span><span class="s1">getScaledInstance</span><span class="s2">(</span><span class="s1">buttonSize</span><span class="s2">.</span><span class="s1">width</span><span class="s2">, </span><span class="s1">buttonSize</span><span class="s2">.</span><span class="s1">height</span><span class="s2">, </span><span class="s1">Image</span><span class="s2">.</span><span class="s1">SCALE_SMOOTH</span><span class="s2">);</span>
+            <span class="s1">ImageIcon scaledIcon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s1">scaledImage</span><span class="s2">);</span>
+
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">button </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JToggleButton</span><span class="s2">(</span><span class="s1">scaledIcon</span><span class="s2">);</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+            <span class="s0">this</span><span class="s2">.</span><span class="s1">button</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+                <span class="s1">@Override</span>
+                <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+                    <span class="s4">// Append the label of the clicked button</span>
+                    <span class="s1">textArea</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s1">label</span><span class="s2">);</span>
+                    <span class="s1">myOrder </span><span class="s2">= </span><span class="s1">MyButton</span><span class="s2">.</span><span class="s1">order</span><span class="s2">;</span>
+                    <span class="s1">MyButton</span><span class="s2">.</span><span class="s1">order</span><span class="s2">++;</span>
+                    <span class="s0">if</span><span class="s2">(</span><span class="s1">isSelected</span><span class="s2">) {</span>
+                        <span class="s1">button</span><span class="s2">.</span><span class="s1">setSelected</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+                        <span class="s1">isSelected </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+                    <span class="s2">}</span><span class="s0">else</span><span class="s2">{</span>
+                        <span class="s1">button</span><span class="s2">.</span><span class="s1">setSelected</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+                        <span class="s1">isSelected</span><span class="s2">=</span><span class="s0">true</span><span class="s2">;</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+            <span class="s2">});</span>
+        <span class="s2">}</span>
+
+        <span class="s0">private static </span><span class="s1">String extractLabelFromPath</span><span class="s2">(</span><span class="s1">String path</span><span class="s2">) {</span>
+            <span class="s4">// Logic to extract the label (letter or number) from the path</span>
+            <span class="s4">// Example: Extract &quot;A&quot; from &quot;C:\\path\\to\\A.jpg&quot;</span>
+            <span class="s1">File file </span><span class="s2">= </span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">path</span><span class="s2">);</span>
+            <span class="s1">String name </span><span class="s2">= </span><span class="s1">file</span><span class="s2">.</span><span class="s1">getName</span><span class="s2">();</span>
+            <span class="s0">int </span><span class="s1">dotIndex </span><span class="s2">= </span><span class="s1">name</span><span class="s2">.</span><span class="s1">lastIndexOf</span><span class="s2">(</span><span class="s5">'.'</span><span class="s2">);</span>
+            <span class="s0">if</span><span class="s2">(</span><span class="s1">dotIndex </span><span class="s2">&gt; </span><span class="s3">0</span><span class="s2">) {</span>
+                <span class="s1">name </span><span class="s2">= </span><span class="s1">name</span><span class="s2">.</span><span class="s1">substring</span><span class="s2">(</span><span class="s3">0</span><span class="s2">, </span><span class="s1">dotIndex</span><span class="s2">);</span>
+            <span class="s2">}</span>
+            <span class="s0">return </span><span class="s1">name</span><span class="s2">; </span><span class="s4">// Returns the name of the file without extension</span>
+        <span class="s2">}</span>
+
+        <span class="s1">@Override</span>
+        <span class="s0">public int </span><span class="s1">compareTo</span><span class="s2">(</span><span class="s1">MyButton myButton</span><span class="s2">) {</span>
+            <span class="s0">return this</span><span class="s2">.</span><span class="s1">myOrder</span><span class="s2">-</span><span class="s1">myButton</span><span class="s2">.</span><span class="s1">myOrder</span><span class="s2">;</span>
+
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static final </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">MyButton</span><span class="s2">&gt; </span><span class="s1">buttons </span><span class="s2">=  </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+    <span class="s0">private static final </span><span class="s1">Dimension buttonSize </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s3">100</span><span class="s2">, </span><span class="s3">100</span><span class="s2">);</span>
+
+    <span class="s0">private static final </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">imagePaths </span><span class="s2">= </span><span class="s1">readImagePathsFromFile</span><span class="s2">(</span><span class="s5">&quot;C:</span><span class="s0">\\</span><span class="s5">Users</span><span class="s0">\\</span><span class="s5">yhayt</span><span class="s0">\\</span><span class="s5">Desktop</span><span class="s0">\\</span><span class="s5">Speech To Text</span><span class="s0">\\</span><span class="s5">Sphinx extract</span><span class="s0">\\</span><span class="s5">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s5">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s5">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s5">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s5">src</span><span class="s0">\\</span><span class="s5">GUI_FILES</span><span class="s0">\\</span><span class="s5">copy image pathes.txt&quot;</span><span class="s2">);</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">SwingUtilities</span><span class="s2">.</span><span class="s1">invokeLater</span><span class="s2">(() </span><span class="s1">-&gt; </span><span class="s2">{</span>
+            <span class="s1">display</span><span class="s2">();</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">static void </span><span class="s1">display</span><span class="s2">() {</span>
+
+
+
+        <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">(</span><span class="s5">&quot;GridLayout Button Example&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+        <span class="s1">JPanel mainPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">(</span><span class="s0">new </span><span class="s1">BorderLayout</span><span class="s2">());</span>
+
+        <span class="s1">JTextArea textArea </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextArea</span><span class="s2">(</span><span class="s3">3</span><span class="s2">, </span><span class="s3">20</span><span class="s2">);</span>
+        <span class="s1">textArea</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s5">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s3">40</span><span class="s2">));</span>
+        <span class="s1">JScrollPane textScrollPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JScrollPane</span><span class="s2">(</span><span class="s1">textArea</span><span class="s2">);</span>
+
+
+        <span class="s1">JPanel buttonPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">(</span><span class="s0">new </span><span class="s1">GridLayout</span><span class="s2">(</span><span class="s3">0</span><span class="s2">, </span><span class="s3">10</span><span class="s2">));</span>
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s5">&quot;Back to Home&quot;</span><span class="s2">);</span>
+
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+            <span class="s1">MainGUI2</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+        <span class="s2">});</span>
+
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">i </span><span class="s2">= </span><span class="s3">0</span><span class="s2">; </span><span class="s1">i </span><span class="s2">&lt; </span><span class="s1">imagePaths</span><span class="s2">.</span><span class="s1">size</span><span class="s2">(); </span><span class="s1">i</span><span class="s2">++) {</span>
+            <span class="s1">MyButton button </span><span class="s2">= </span><span class="s0">new </span><span class="s1">MyButton</span><span class="s2">(</span><span class="s1">imagePaths</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">), </span><span class="s1">textArea</span><span class="s2">);</span>
+            <span class="s1">buttons</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">button</span><span class="s2">);</span>
+            <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">button</span><span class="s2">.</span><span class="s1">button</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+
+
+        <span class="s1">JScrollPane buttonScrollPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JScrollPane</span><span class="s2">(</span><span class="s1">buttonPanel</span><span class="s2">);</span>
+        <span class="s1">buttonScrollPane</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s3">1920</span><span class="s2">, </span><span class="s3">1080</span><span class="s2">));</span>
+        <span class="s1">buttonScrollPane</span><span class="s2">.</span><span class="s1">setVerticalScrollBarPolicy</span><span class="s2">(</span><span class="s1">JScrollPane</span><span class="s2">.</span><span class="s1">VERTICAL_SCROLLBAR_ALWAYS</span><span class="s2">);</span>
+        <span class="s1">buttonScrollPane</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+
+        <span class="s4">// New code to set faster scrolling speed</span>
+        <span class="s1">buttonScrollPane</span><span class="s2">.</span><span class="s1">getVerticalScrollBar</span><span class="s2">().</span><span class="s1">setUnitIncrement</span><span class="s2">(</span><span class="s3">20</span><span class="s2">); </span><span class="s4">// You can adjust this value</span>
+        <span class="s1">buttonScrollPane</span><span class="s2">.</span><span class="s1">getVerticalScrollBar</span><span class="s2">().</span><span class="s1">setBlockIncrement</span><span class="s2">(</span><span class="s3">60</span><span class="s2">); </span><span class="s4">// You can adjust this value</span>
+
+        <span class="s1">mainPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">textScrollPane</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">NORTH</span><span class="s2">);</span>
+        <span class="s1">mainPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">buttonScrollPane</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+
+        <span class="s4">// Create processButton with a smaller size</span>
+        <span class="s1">JButton processButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s5">&quot;GENERATE&quot;</span><span class="s2">);</span>
+        <span class="s1">Dimension processButtonSize </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s3">100</span><span class="s2">, </span><span class="s3">50</span><span class="s2">);</span>
+        <span class="s1">Dimension processButtonSize2 </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s3">200</span><span class="s2">, </span><span class="s3">100</span><span class="s2">);</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s1">processButtonSize</span><span class="s2">);</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">addMouseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseAdapter</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">mouseEntered</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public void </span><span class="s1">mouseExited</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">JButton clearButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s5">&quot;clear&quot;</span><span class="s2">);</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s1">processButtonSize2</span><span class="s2">);</span>
+        <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s1">processButtonSize</span><span class="s2">);</span>
+        <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+        <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s5">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s3">20</span><span class="s2">));</span>
+        <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s5">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s3">25</span><span class="s2">));</span>
+        <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">addMouseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseAdapter</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">mouseEntered</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public void </span><span class="s1">mouseExited</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">clearButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent actionEvent</span><span class="s2">) {</span>
+                <span class="s0">for</span><span class="s2">(</span><span class="s0">int </span><span class="s1">i</span><span class="s2">=</span><span class="s3">0</span><span class="s2">;</span><span class="s1">i</span><span class="s2">&lt;</span><span class="s1">buttons</span><span class="s2">.</span><span class="s1">size</span><span class="s2">();</span><span class="s1">i</span><span class="s2">++) {</span>
+                    <span class="s1">MyButton button </span><span class="s2">= </span><span class="s1">buttons</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">);</span>
+                    <span class="s0">if</span><span class="s2">(</span><span class="s1">button</span><span class="s2">.</span><span class="s1">isSelected</span><span class="s2">) {</span>
+                        <span class="s1">button</span><span class="s2">.</span><span class="s1">button</span><span class="s2">.</span><span class="s1">setSelected</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+                        <span class="s1">button</span><span class="s2">.</span><span class="s1">isSelected </span><span class="s2">= </span><span class="s0">false</span><span class="s2">;</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+                <span class="s1">textArea</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s5">&quot;&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s4">// Create processPanel and add processButton to it</span>
+        <span class="s1">JPanel processPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">();</span>
+        <span class="s1">processPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">clearButton</span><span class="s2">);</span>
+        <span class="s1">processPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">backToHomeButton</span><span class="s2">);</span>
+        <span class="s4">// Add processPanel to the south of the main panel</span>
+        <span class="s1">mainPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">processPanel</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">SOUTH</span><span class="s2">);</span>
+
+        <span class="s4">// Add action listener for the process button</span>
+        <span class="s1">processButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">selectedPaths </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+                <span class="s1">Collections</span><span class="s2">.</span><span class="s1">sort</span><span class="s2">(</span><span class="s1">buttons</span><span class="s2">);</span>
+                <span class="s0">for</span><span class="s2">(</span><span class="s0">int </span><span class="s1">i</span><span class="s2">=</span><span class="s3">0</span><span class="s2">;</span><span class="s1">i</span><span class="s2">&lt;</span><span class="s1">buttons</span><span class="s2">.</span><span class="s1">size</span><span class="s2">();</span><span class="s1">i</span><span class="s2">++){</span>
+                    <span class="s1">MyButton button </span><span class="s2">= </span><span class="s1">buttons</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">i</span><span class="s2">);</span>
+                    <span class="s0">if</span><span class="s2">(</span><span class="s1">button</span><span class="s2">.</span><span class="s1">isSelected</span><span class="s2">){</span>
+                        <span class="s1">selectedPaths</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">button</span><span class="s2">.</span><span class="s1">path</span><span class="s2">);</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+
+                <span class="s4">// Handle the process button click</span>
+                <span class="s1">String text </span><span class="s2">= </span><span class="s1">ImageToTextt</span><span class="s2">.</span><span class="s1">getStringfromImage</span><span class="s2">(</span><span class="s1">selectedPaths</span><span class="s2">);</span>
+                <span class="s1">textArea</span><span class="s2">.</span><span class="s1">setText</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">getContentPane</span><span class="s2">().</span><span class="s1">add</span><span class="s2">(</span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">, </span><span class="s1">mainPanel</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s3">1920</span><span class="s2">, </span><span class="s3">1000</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+
+        <span class="s1">JButton spaceButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s5">&quot;Space&quot;</span><span class="s2">);</span>
+        <span class="s1">spaceButton</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s3">300</span><span class="s2">, </span><span class="s3">50</span><span class="s2">));</span>
+        <span class="s1">spaceButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+        <span class="s1">spaceButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+        <span class="s1">spaceButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s5">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s3">25</span><span class="s2">));</span>
+        <span class="s1">spaceButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s1">textArea</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s5">&quot; &quot;</span><span class="s2">); </span><span class="s4">// Append a space to the text</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s1">processPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">spaceButton</span><span class="s2">); </span><span class="s4">// Add space button to processPanel</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">readImagePathsFromFile</span><span class="s2">(</span><span class="s1">String filePath</span><span class="s2">) {</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">imagePaths </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s0">try </span><span class="s2">(</span><span class="s1">Scanner scanner </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">filePath</span><span class="s2">))) {</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">hasNextLine</span><span class="s2">()) {</span>
+                <span class="s1">String line </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                <span class="s1">imagePaths</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">line</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+        <span class="s2">}</span>
+        <span class="s0">return </span><span class="s1">imagePaths</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">private static </span><span class="s1">ImageIcon createImageIcon</span><span class="s2">(</span><span class="s1">String path</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">{</span>
+            <span class="s0">return new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s1">path</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception e</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s5">&quot;Couldn't find file: &quot; </span><span class="s2">+ </span><span class="s1">path</span><span class="s2">);</span>
+            <span class="s0">return null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+</pre>
+</body>
+</html>

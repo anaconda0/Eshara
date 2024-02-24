@@ -1,0 +1,179 @@
+<html>
+<head>
+<title>SignInForm.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SignInForm.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">BufferedImage</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileNotFoundException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">imageio</span><span class="s2">.</span><span class="s1">ImageIO</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">SignInForm </span><span class="s0">extends </span><span class="s1">JFrame </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">JTextField usernameField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">MainGUI2 MainGUI2</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JPasswordField passwordField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">USERR</span><span class="s2">&gt; </span><span class="s1">users</span><span class="s2">; </span><span class="s3">// Assuming you have a list of users</span>
+
+    <span class="s0">public </span><span class="s1">SignInForm</span><span class="s2">() {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">users </span><span class="s2">= </span><span class="s1">loadUsersFromFile</span><span class="s2">(</span><span class="s4">&quot;C:</span><span class="s0">\\</span><span class="s4">Users</span><span class="s0">\\</span><span class="s4">yhayt</span><span class="s0">\\</span><span class="s4">Desktop</span><span class="s0">\\</span><span class="s4">Speech To Text</span><span class="s0">\\</span><span class="s4">Sphinx extract</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s4">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s4">src</span><span class="s0">\\</span><span class="s4">GUI_FILES</span><span class="s0">\\</span><span class="s4">usersdata.txt&quot;</span><span class="s2">); </span><span class="s3">// Initialize the users list</span>
+
+        <span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;Sign In&quot;</span><span class="s2">);</span>
+        <span class="s1">setSize</span><span class="s2">(</span><span class="s5">400</span><span class="s2">, </span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+        <span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+
+        <span class="s1">initComponents</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Create a background panel with an image</span>
+    <span class="s1">JPanel backgroundPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">() {</span>
+        <span class="s1">@Override</span>
+        <span class="s0">protected void </span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">Graphics g</span><span class="s2">) {</span>
+            <span class="s0">super</span><span class="s2">.</span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">g</span><span class="s2">);</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">BufferedImage image </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s4">&quot;C:</span><span class="s0">\\</span><span class="s4">Users</span><span class="s0">\\</span><span class="s4">yhayt</span><span class="s0">\\</span><span class="s4">Desktop</span><span class="s0">\\</span><span class="s4">Speech To Text</span><span class="s0">\\</span><span class="s4">Sphinx extract</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s4">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s4">resources_images</span><span class="s0">\\</span><span class="s4">back ver 2.jpeg&quot;</span><span class="s2">)); </span><span class="s3">// Replace with your image path</span>
+                <span class="s1">g</span><span class="s2">.</span><span class="s1">drawImage</span><span class="s2">(</span><span class="s1">image</span><span class="s2">, </span><span class="s5">0</span><span class="s2">, </span><span class="s5">0</span><span class="s2">, </span><span class="s0">this</span><span class="s2">.</span><span class="s1">getWidth</span><span class="s2">(), </span><span class="s0">this</span><span class="s2">.</span><span class="s1">getHeight</span><span class="s2">(), </span><span class="s0">this</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">};</span>
+
+    <span class="s0">private void </span><span class="s1">initComponents</span><span class="s2">() {</span>
+        <span class="s1">JPanel panel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">(</span><span class="s0">new </span><span class="s1">GridLayout</span><span class="s2">(</span><span class="s5">4</span><span class="s2">, </span><span class="s5">2</span><span class="s2">, </span><span class="s5">10</span><span class="s2">, </span><span class="s5">10</span><span class="s2">)) {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">protected void </span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">Graphics g</span><span class="s2">) {</span>
+                <span class="s0">super</span><span class="s2">.</span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">g</span><span class="s2">);</span>
+                <span class="s0">try </span><span class="s2">{</span>
+                    <span class="s1">Image image </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s4">&quot;path_to_your_image&quot;</span><span class="s2">)); </span><span class="s3">// Replace with your image path</span>
+                    <span class="s1">g</span><span class="s2">.</span><span class="s1">drawImage</span><span class="s2">(</span><span class="s1">image</span><span class="s2">, </span><span class="s5">0</span><span class="s2">, </span><span class="s5">0</span><span class="s2">, </span><span class="s0">this</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                    <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">};</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">setBorder</span><span class="s2">(</span><span class="s1">BorderFactory</span><span class="s2">.</span><span class="s1">createEmptyBorder</span><span class="s2">(</span><span class="s5">10</span><span class="s2">, </span><span class="s5">10</span><span class="s2">, </span><span class="s5">10</span><span class="s2">, </span><span class="s5">10</span><span class="s2">));</span>
+
+        <span class="s1">JLabel titleLabel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s4">&quot;Welcome to Hands Talk!&quot;</span><span class="s2">, </span><span class="s1">SwingConstants</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+        <span class="s1">titleLabel</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s5">24</span><span class="s2">)); </span><span class="s3">// Adjust the size as needed</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">titleLabel</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">PAGE_START</span><span class="s2">);</span>
+
+        <span class="s1">JLabel usernameLabel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s4">&quot;Username:&quot;</span><span class="s2">);</span>
+        <span class="s1">usernameField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">();</span>
+
+        <span class="s1">JLabel passwordLabel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s4">&quot;Password:&quot;</span><span class="s2">);</span>
+        <span class="s1">passwordField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPasswordField</span><span class="s2">();</span>
+
+        <span class="s1">JButton signInButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s4">&quot;Sign In&quot;</span><span class="s2">);</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s5">18</span><span class="s2">)); </span><span class="s3">// Adjust the size as needed</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLUE</span><span class="s2">); </span><span class="s3">// Choose the color you prefer</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">); </span><span class="s3">// This changes the color of the text on the button</span>
+
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s4">&quot;Back to Home&quot;</span><span class="s2">);</span>
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s5">18</span><span class="s2">)); </span><span class="s3">// Adjust the size as needed</span>
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLUE</span><span class="s2">); </span><span class="s3">// Choose the color you prefer</span>
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">); </span><span class="s3">// This changes the color of the text on the button</span>
+
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s1">signIn</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">dispose</span><span class="s2">();</span>
+            <span class="s1">MainGUI</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+        <span class="s2">});</span>
+
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">usernameLabel</span><span class="s2">);</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">usernameField</span><span class="s2">);</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">passwordLabel</span><span class="s2">);</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">passwordField</span><span class="s2">);</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">()); </span><span class="s3">// Placeholder</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">signInButton</span><span class="s2">);</span>
+        <span class="s1">panel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">backToHomeButton</span><span class="s2">);</span>
+
+        <span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">BorderLayout</span><span class="s2">());</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">panel</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">signIn</span><span class="s2">() {</span>
+        <span class="s1">String username </span><span class="s2">= </span><span class="s1">usernameField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String passwordString </span><span class="s2">= </span><span class="s0">new </span><span class="s1">String</span><span class="s2">(</span><span class="s1">passwordField</span><span class="s2">.</span><span class="s1">getPassword</span><span class="s2">());</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">USERR user </span><span class="s2">: </span><span class="s1">users</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">username</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getUsername</span><span class="s2">()) &amp;&amp; </span><span class="s1">passwordString</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getPassword</span><span class="s2">()))) {</span>
+                <span class="s1">JOptionPane</span><span class="s2">.</span><span class="s1">showMessageDialog</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;Sign In successful!</span><span class="s0">\n</span><span class="s4">Welcome, &quot; </span><span class="s2">+ </span><span class="s1">user</span><span class="s2">.</span><span class="s1">getFirstname</span><span class="s2">() + </span><span class="s4">&quot;!&quot;</span><span class="s2">);</span>
+
+                <span class="s3">// Open MainGUI2</span>
+
+                <span class="s3">// Close the current sign-in form</span>
+                <span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">MainGUI2</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+                <span class="s0">this</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+                <span class="s0">return</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s1">JOptionPane</span><span class="s2">.</span><span class="s1">showMessageDialog</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;Invalid username or password. Please try again.&quot;</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">JFrame frame</span><span class="s2">) {</span>
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s4">&quot;C:</span><span class="s0">\\</span><span class="s4">Users</span><span class="s0">\\</span><span class="s4">yhayt</span><span class="s0">\\</span><span class="s4">Desktop</span><span class="s0">\\</span><span class="s4">Semester 3</span><span class="s0">\\</span><span class="s4">OneNot Notebooks</span><span class="s0">\\</span><span class="s4">Object Oriented Programming (CCS2303)</span><span class="s0">\\</span><span class="s4">Material</span><span class="s0">\\</span><span class="s4">HandsTalk Project</span><span class="s0">\\</span><span class="s4">Creative Elements</span><span class="s0">\\</span><span class="s4">Logo</span><span class="s0">\\</span><span class="s4">Handstalk logo.png&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">USERR</span><span class="s2">&gt; </span><span class="s1">loadUsersFromFile</span><span class="s2">(</span><span class="s1">String filePath</span><span class="s2">) {</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">USERR</span><span class="s2">&gt; </span><span class="s1">loadedUsers </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+
+        <span class="s0">try </span><span class="s2">(</span><span class="s1">Scanner scanner </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">filePath</span><span class="s2">))) {</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">hasNextLine</span><span class="s2">()) {</span>
+                <span class="s1">String line </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                <span class="s1">String</span><span class="s2">[] </span><span class="s1">userData </span><span class="s2">= </span><span class="s1">line</span><span class="s2">.</span><span class="s1">split</span><span class="s2">(</span><span class="s4">&quot;,&quot;</span><span class="s2">);</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">userData</span><span class="s2">.</span><span class="s1">length </span><span class="s2">== </span><span class="s5">6</span><span class="s2">) { </span><span class="s3">// Assuming 6 fields: firstname, lastname, email, password, gender, username</span>
+                    <span class="s1">String firstname </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">String lastname </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">1</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">String email </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">2</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">String userPassword </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">3</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">GENDER gender </span><span class="s2">= </span><span class="s1">GENDER</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s1">userData</span><span class="s2">[</span><span class="s5">4</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">());</span>
+                    <span class="s1">String userUsername </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">5</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+
+                    <span class="s1">USERR user </span><span class="s2">= </span><span class="s0">new </span><span class="s1">USERR</span><span class="s2">(</span><span class="s1">firstname</span><span class="s2">, </span><span class="s1">lastname</span><span class="s2">, </span><span class="s1">email</span><span class="s2">, </span><span class="s1">userPassword</span><span class="s2">, </span><span class="s1">gender</span><span class="s2">, </span><span class="s1">userUsername</span><span class="s2">);</span>
+                    <span class="s1">loadedUsers</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">user</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;User data loaded successfully. Number of users: &quot; </span><span class="s2">+ </span><span class="s1">loadedUsers</span><span class="s2">.</span><span class="s1">size</span><span class="s2">());</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;File not found: &quot; </span><span class="s2">+ </span><span class="s1">e</span><span class="s2">.</span><span class="s1">getMessage</span><span class="s2">());</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s1">loadedUsers</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

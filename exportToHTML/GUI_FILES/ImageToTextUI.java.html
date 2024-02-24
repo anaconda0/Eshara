@@ -1,0 +1,119 @@
+<html>
+<head>
+<title>ImageToTextUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+ImageToTextUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">TextToImageUI</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">Mat</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">imgcodecs</span><span class="s2">.</span><span class="s1">Imgcodecs</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">ImageToTextt</span><span class="s2">.</span><span class="s1">imagetotext</span><span class="s2">;</span>
+<span class="s0">import static </span><span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">TextToSpeechUI</span><span class="s2">.</span><span class="s1">createStyledButton</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">ImageToTextUI </span><span class="s2">{</span>
+    <span class="s0">public static void </span><span class="s1">display</span><span class="s2">() {</span>
+        <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">(</span><span class="s3">&quot;Image to Text&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s4">300</span><span class="s2">, </span><span class="s4">300</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setResizable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">JTextField textField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">(</span><span class="s4">20</span><span class="s2">);</span>
+        <span class="s1">JButton generateButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Generate Text&quot;</span><span class="s2">);</span>
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Back to Home&quot;</span><span class="s2">);</span>
+
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+            <span class="s1">MainGUI2</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+        <span class="s2">});</span>
+
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FlowLayout</span><span class="s2">());</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">textField</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">generateButton</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">backToHomeButton</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Semester 3</span><span class="s0">\\</span><span class="s3">OneNot Notebooks</span><span class="s0">\\</span><span class="s3">Object Oriented Programming (CCS2303)</span><span class="s0">\\</span><span class="s3">Material</span><span class="s0">\\</span><span class="s3">HandsTalk Project</span><span class="s0">\\</span><span class="s3">Creative Elements</span><span class="s0">\\</span><span class="s3">Logo</span><span class="s0">\\</span><span class="s3">Handstalk logo.png&quot;</span><span class="s2">); </span><span class="s5">// Replace with the path to your image</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static long </span><span class="s1">calculateImageSum</span><span class="s2">(</span><span class="s1">String imagePath</span><span class="s2">) {</span>
+        <span class="s5">// Load the image using Imgcodecs</span>
+        <span class="s1">Mat image </span><span class="s2">= </span><span class="s1">Imgcodecs</span><span class="s2">.</span><span class="s1">imread</span><span class="s2">(</span><span class="s1">imagePath</span><span class="s2">);</span>
+
+        <span class="s0">long </span><span class="s1">sum </span><span class="s2">= </span><span class="s4">0</span><span class="s2">;</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">r </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">r </span><span class="s2">&lt; </span><span class="s1">image</span><span class="s2">.</span><span class="s1">height</span><span class="s2">(); </span><span class="s1">r</span><span class="s2">++) {</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s0">int </span><span class="s1">c </span><span class="s2">= </span><span class="s4">0</span><span class="s2">; </span><span class="s1">c </span><span class="s2">&lt; </span><span class="s1">image</span><span class="s2">.</span><span class="s1">width</span><span class="s2">(); </span><span class="s1">c</span><span class="s2">++) {</span>
+                <span class="s0">double</span><span class="s2">[] </span><span class="s1">colors </span><span class="s2">= </span><span class="s1">image</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">r</span><span class="s2">, </span><span class="s1">c</span><span class="s2">);</span>
+                <span class="s0">for </span><span class="s2">(</span><span class="s0">double </span><span class="s1">color </span><span class="s2">: </span><span class="s1">colors</span><span class="s2">) {</span>
+                    <span class="s1">sum </span><span class="s2">+= (</span><span class="s0">long</span><span class="s2">) </span><span class="s1">color</span><span class="s2">;</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s1">sum</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">JFrame frame</span><span class="s2">) {</span>
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Semester 3</span><span class="s0">\\</span><span class="s3">OneNot Notebooks</span><span class="s0">\\</span><span class="s3">Object Oriented Programming (CCS2303)</span><span class="s0">\\</span><span class="s3">Material</span><span class="s0">\\</span><span class="s3">HandsTalk Project</span><span class="s0">\\</span><span class="s3">Creative Elements</span><span class="s0">\\</span><span class="s3">Logo</span><span class="s0">\\</span><span class="s3">Handstalk logo.png&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">String getStringFromImage</span><span class="s2">(</span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">imagePathList</span><span class="s2">) {</span>
+        <span class="s1">StringBuilder stringBuilder </span><span class="s2">= </span><span class="s0">new </span><span class="s1">StringBuilder</span><span class="s2">();</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">String imagePath </span><span class="s2">: </span><span class="s1">imagePathList</span><span class="s2">) {</span>
+            <span class="s0">long </span><span class="s1">imageSum </span><span class="s2">= </span><span class="s1">calculateImageSum</span><span class="s2">(</span><span class="s1">imagePath</span><span class="s2">);</span>
+            <span class="s1">String text </span><span class="s2">= </span><span class="s1">imagetotext</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">imageSum</span><span class="s2">); </span><span class="s5">// &lt;-- Where is imagetotext defined?</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">text </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s1">stringBuilder</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s3">&quot; &quot;</span><span class="s2">).</span><span class="s1">append</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s1">stringBuilder</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">String getText</span><span class="s2">(</span><span class="s1">String imagePath</span><span class="s2">) {</span>
+        <span class="s0">return </span><span class="s1">imagetotext</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">calculateImageSum</span><span class="s2">(</span><span class="s1">imagePath</span><span class="s2">)); </span><span class="s5">// &lt;-- Where is imagetotext defined?</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">public static </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">getImagePaths</span><span class="s2">() {</span>
+        <span class="s1">Scanner sc </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s1">System</span><span class="s2">.</span><span class="s1">in</span><span class="s2">);</span>
+        <span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">&gt; </span><span class="s1">imageList </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+        <span class="s1">String s</span><span class="s2">;</span>
+
+        <span class="s0">do </span><span class="s2">{</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Enter image path. If you're finished, enter 'DONE': &quot;</span><span class="s2">);</span>
+            <span class="s1">s </span><span class="s2">= </span><span class="s1">sc</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+
+            <span class="s0">if </span><span class="s2">(!</span><span class="s1">s</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s3">&quot;DONE&quot;</span><span class="s2">) &amp;&amp; !</span><span class="s1">s</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+                <span class="s1">imageList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">s</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">while </span><span class="s2">(!</span><span class="s1">s</span><span class="s2">.</span><span class="s1">equals</span><span class="s2">(</span><span class="s3">&quot;DONE&quot;</span><span class="s2">));</span>
+
+        <span class="s0">return </span><span class="s1">imageList</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+<span class="s2">}</span></pre>
+</body>
+</html>

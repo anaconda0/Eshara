@@ -1,0 +1,222 @@
+<html>
+<head>
+<title>SignUpGUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SignUpGUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileNotFoundException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileWriter</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">PrintWriter</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">ArrayList</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Scanner</span><span class="s2">;</span>
+
+<span class="s0">import static </span><span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">TextToSpeechUI</span><span class="s2">.</span><span class="s1">createStyledButton</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">SignUpGUI </span><span class="s0">extends </span><span class="s1">JFrame </span><span class="s2">{</span>
+
+    <span class="s0">private </span><span class="s1">JTextField firstnameField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField lastnameField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField emailField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JTextField usernameField</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">JPasswordField passwordField</span><span class="s2">;</span>
+    <span class="s0">public </span><span class="s1">JComboBox</span><span class="s2">&lt;</span><span class="s1">GENDER</span><span class="s2">&gt; </span><span class="s1">genderComboBox</span><span class="s2">;</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">USERR</span><span class="s2">&gt; </span><span class="s1">users</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">SignUpGUI</span><span class="s2">() {</span>
+        <span class="s3">// Set up the frame</span>
+        <span class="s1">setTitle</span><span class="s2">(</span><span class="s4">&quot;User Sign Up&quot;</span><span class="s2">);</span>
+        <span class="s1">setSize</span><span class="s2">(</span><span class="s5">500</span><span class="s2">, </span><span class="s5">400</span><span class="s2">);</span>
+        <span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+        <span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+
+        <span class="s3">// Initialize user list</span>
+        <span class="s1">users </span><span class="s2">= </span><span class="s1">loadUserDataFromFile</span><span class="s2">();</span>
+
+        <span class="s3">// Create components</span>
+        <span class="s1">firstnameField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">(</span><span class="s5">20</span><span class="s2">);</span>
+        <span class="s1">lastnameField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">(</span><span class="s5">20</span><span class="s2">);</span>
+        <span class="s1">emailField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">(</span><span class="s5">20</span><span class="s2">);</span>
+        <span class="s1">usernameField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">(</span><span class="s5">20</span><span class="s2">);</span>
+        <span class="s1">passwordField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPasswordField</span><span class="s2">(</span><span class="s5">20</span><span class="s2">);</span>
+        <span class="s1">genderComboBox </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JComboBox</span><span class="s2">&lt;&gt;(</span><span class="s1">GENDER</span><span class="s2">.</span><span class="s1">values</span><span class="s2">());</span>
+
+        <span class="s1">JButton signupButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s4">&quot;Sign Up&quot;</span><span class="s2">);</span>
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s4">&quot;Back to Home&quot;</span><span class="s2">);</span>
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">dispose</span><span class="s2">();</span>
+            <span class="s1">MainGUI</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+        <span class="s2">});</span>
+
+        <span class="s3">// Set layout</span>
+        <span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">GridBagLayout</span><span class="s2">());</span>
+        <span class="s1">GridBagConstraints gbc </span><span class="s2">= </span><span class="s0">new </span><span class="s1">GridBagConstraints</span><span class="s2">();</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">insets </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Insets</span><span class="s2">(</span><span class="s5">5</span><span class="s2">, </span><span class="s5">5</span><span class="s2">, </span><span class="s5">5</span><span class="s2">, </span><span class="s5">5</span><span class="s2">);</span>
+
+        <span class="s3">// Add components to the frame with larger labels</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">createLabel</span><span class="s2">(</span><span class="s4">&quot;First Name:&quot;</span><span class="s2">), </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">firstnameField</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">createLabel</span><span class="s2">(</span><span class="s4">&quot;Last Name:&quot;</span><span class="s2">), </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">lastnameField</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">2</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">createLabel</span><span class="s2">(</span><span class="s4">&quot;Email:&quot;</span><span class="s2">), </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">emailField</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">3</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">createLabel</span><span class="s2">(</span><span class="s4">&quot;Username:&quot;</span><span class="s2">), </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">usernameField</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">4</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">createLabel</span><span class="s2">(</span><span class="s4">&quot;Password:&quot;</span><span class="s2">), </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">passwordField</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">5</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">createLabel</span><span class="s2">(</span><span class="s4">&quot;Gender:&quot;</span><span class="s2">), </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">1</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">genderComboBox</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">6</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridwidth </span><span class="s2">= </span><span class="s5">2</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s4">&quot;&quot;</span><span class="s2">)); </span><span class="s3">// Placeholder</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">7</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridwidth </span><span class="s2">= </span><span class="s5">2</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">signupButton</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridy </span><span class="s2">= </span><span class="s5">8</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridx </span><span class="s2">= </span><span class="s5">0</span><span class="s2">;</span>
+        <span class="s1">gbc</span><span class="s2">.</span><span class="s1">gridwidth </span><span class="s2">= </span><span class="s5">2</span><span class="s2">;</span>
+        <span class="s1">add</span><span class="s2">(</span><span class="s1">backToHomeButton</span><span class="s2">, </span><span class="s1">gbc</span><span class="s2">);</span>
+
+        <span class="s3">// Add action listener</span>
+        <span class="s1">signupButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s1">signUpUser</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">JLabel createLabel</span><span class="s2">(</span><span class="s1">String labelText</span><span class="s2">) {</span>
+        <span class="s1">JLabel label </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s1">labelText</span><span class="s2">);</span>
+        <span class="s1">label</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s5">16</span><span class="s2">)); </span><span class="s3">// Set font size to 16</span>
+        <span class="s0">return </span><span class="s1">label</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private </span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">USERR</span><span class="s2">&gt; </span><span class="s1">loadUserDataFromFile</span><span class="s2">() {</span>
+        <span class="s1">List</span><span class="s2">&lt;</span><span class="s1">USERR</span><span class="s2">&gt; </span><span class="s1">loadedUsers </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+
+        <span class="s0">try </span><span class="s2">(</span><span class="s1">Scanner scanner </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s4">&quot;C:</span><span class="s0">\\</span><span class="s4">Users</span><span class="s0">\\</span><span class="s4">yhayt</span><span class="s0">\\</span><span class="s4">Desktop</span><span class="s0">\\</span><span class="s4">Speech To Text</span><span class="s0">\\</span><span class="s4">Sphinx extract</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s4">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s4">src</span><span class="s0">\\</span><span class="s4">GUI_FILES</span><span class="s0">\\</span><span class="s4">usersdata.txt&quot;</span><span class="s2">))) {</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">hasNextLine</span><span class="s2">()) {</span>
+                <span class="s1">String line </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">();</span>
+                <span class="s1">String</span><span class="s2">[] </span><span class="s1">userData </span><span class="s2">= </span><span class="s1">line</span><span class="s2">.</span><span class="s1">split</span><span class="s2">(</span><span class="s4">&quot;,&quot;</span><span class="s2">);</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">userData</span><span class="s2">.</span><span class="s1">length </span><span class="s2">== </span><span class="s5">6</span><span class="s2">) { </span><span class="s3">// Assuming 6 fields: firstname, lastname, email, password, gender, username</span>
+                    <span class="s1">String firstname </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">0</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">String lastname </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">1</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">String email </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">2</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">String password </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">3</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+                    <span class="s1">GENDER gender </span><span class="s2">= </span><span class="s1">GENDER</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s1">userData</span><span class="s2">[</span><span class="s5">4</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">());</span>
+                    <span class="s1">String username </span><span class="s2">= </span><span class="s1">userData</span><span class="s2">[</span><span class="s5">5</span><span class="s2">].</span><span class="s1">trim</span><span class="s2">();</span>
+
+                    <span class="s1">USERR user </span><span class="s2">= </span><span class="s0">new </span><span class="s1">USERR</span><span class="s2">(</span><span class="s1">firstname</span><span class="s2">, </span><span class="s1">lastname</span><span class="s2">, </span><span class="s1">email</span><span class="s2">, </span><span class="s1">password</span><span class="s2">, </span><span class="s1">gender</span><span class="s2">, </span><span class="s1">username</span><span class="s2">);</span>
+                    <span class="s1">loadedUsers</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">user</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;User data loaded successfully.&quot;</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;File not found: &quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s0">return </span><span class="s1">loadedUsers</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">saveUserDataToFile</span><span class="s2">() {</span>
+        <span class="s0">try </span><span class="s2">(</span><span class="s1">PrintWriter writer </span><span class="s2">= </span><span class="s0">new </span><span class="s1">PrintWriter</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FileWriter</span><span class="s2">(</span><span class="s4">&quot;C:</span><span class="s0">\\</span><span class="s4">Users</span><span class="s0">\\</span><span class="s4">yhayt</span><span class="s0">\\</span><span class="s4">Desktop</span><span class="s0">\\</span><span class="s4">Speech To Text</span><span class="s0">\\</span><span class="s4">Sphinx extract</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s4">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s4">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s4">src</span><span class="s0">\\</span><span class="s4">GUI_FILES</span><span class="s0">\\</span><span class="s4">usersdata.txt&quot;</span><span class="s2">))) {</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s1">USERR user </span><span class="s2">: </span><span class="s1">users</span><span class="s2">) {</span>
+                <span class="s3">// Format the user data and write to the file</span>
+                <span class="s1">writer</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getFirstname</span><span class="s2">() + </span><span class="s4">&quot;,&quot; </span><span class="s2">+</span>
+                        <span class="s1">user</span><span class="s2">.</span><span class="s1">getLastname</span><span class="s2">() + </span><span class="s4">&quot;,&quot; </span><span class="s2">+</span>
+                        <span class="s1">user</span><span class="s2">.</span><span class="s1">getEmail</span><span class="s2">() + </span><span class="s4">&quot;,&quot; </span><span class="s2">+</span>
+                        <span class="s1">user</span><span class="s2">.</span><span class="s1">getPassword</span><span class="s2">() + </span><span class="s4">&quot;,&quot; </span><span class="s2">+</span>
+                        <span class="s1">user</span><span class="s2">.</span><span class="s1">getGender</span><span class="s2">() + </span><span class="s4">&quot;,&quot; </span><span class="s2">+</span>
+                        <span class="s1">user</span><span class="s2">.</span><span class="s1">getUsername</span><span class="s2">());</span>
+            <span class="s2">}</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">out</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;User data saved to file successfully.&quot;</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s4">&quot;Error saving user data to file.&quot;</span><span class="s2">);</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">signUpUser</span><span class="s2">() {</span>
+        <span class="s1">String firstname </span><span class="s2">= </span><span class="s1">firstnameField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String lastname </span><span class="s2">= </span><span class="s1">lastnameField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String email </span><span class="s2">= </span><span class="s1">emailField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String username </span><span class="s2">= </span><span class="s1">usernameField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+        <span class="s1">String password </span><span class="s2">= </span><span class="s0">new </span><span class="s1">String</span><span class="s2">(</span><span class="s1">passwordField</span><span class="s2">.</span><span class="s1">getPassword</span><span class="s2">()); </span><span class="s3">// Get plain text password</span>
+        <span class="s1">GENDER gender </span><span class="s2">= (</span><span class="s1">GENDER</span><span class="s2">) </span><span class="s1">genderComboBox</span><span class="s2">.</span><span class="s1">getSelectedItem</span><span class="s2">();</span>
+
+        <span class="s3">// Check if the username is already taken</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">isUsernameTaken</span><span class="s2">(</span><span class="s1">username</span><span class="s2">)) {</span>
+            <span class="s1">JOptionPane</span><span class="s2">.</span><span class="s1">showMessageDialog</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;Username already taken. Please choose another.&quot;</span><span class="s2">);</span>
+            <span class="s0">return</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s3">// Create a new user and add to the list</span>
+        <span class="s1">USERR newUser </span><span class="s2">= </span><span class="s0">new </span><span class="s1">USERR</span><span class="s2">(</span><span class="s1">firstname</span><span class="s2">, </span><span class="s1">lastname</span><span class="s2">, </span><span class="s1">email</span><span class="s2">, </span><span class="s1">password</span><span class="s2">, </span><span class="s1">gender</span><span class="s2">, </span><span class="s1">username</span><span class="s2">);</span>
+        <span class="s1">users</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">newUser</span><span class="s2">);</span>
+
+        <span class="s3">// Save user data to a file</span>
+        <span class="s1">saveUserDataToFile</span><span class="s2">();</span>
+
+        <span class="s1">JOptionPane</span><span class="s2">.</span><span class="s1">showMessageDialog</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s4">&quot;Sign Up successful!</span><span class="s0">\n</span><span class="s4">&quot; </span><span class="s2">+ </span><span class="s1">newUser</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+
+    <span class="s0">private boolean </span><span class="s1">isUsernameTaken</span><span class="s2">(</span><span class="s1">String username</span><span class="s2">) {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">USERR user </span><span class="s2">: </span><span class="s1">users</span><span class="s2">) {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">user</span><span class="s2">.</span><span class="s1">getUsername</span><span class="s2">().</span><span class="s1">equals</span><span class="s2">(</span><span class="s1">username</span><span class="s2">)) {</span>
+                <span class="s0">return true</span><span class="s2">;</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+        <span class="s0">return false</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

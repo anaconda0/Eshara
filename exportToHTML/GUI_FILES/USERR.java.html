@@ -1,0 +1,104 @@
+<html>
+<head>
+<title>USERR.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+USERR.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">Serializable</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">USERR </span><span class="s0">implements </span><span class="s1">Serializable </span><span class="s2">{</span>
+    <span class="s0">private </span><span class="s1">String firstname</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String lastname</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String email</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String password</span><span class="s2">; </span><span class="s3">// Store the password as a number</span>
+    <span class="s0">private </span><span class="s1">GENDER gender</span><span class="s2">;</span>
+    <span class="s0">private </span><span class="s1">String username</span><span class="s2">;</span>
+
+    <span class="s0">public </span><span class="s1">String getFirstname</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">firstname</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setFirstname</span><span class="s2">(</span><span class="s1">String firstname</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">firstname </span><span class="s2">= </span><span class="s1">firstname</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getLastname</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">lastname</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setLastname</span><span class="s2">(</span><span class="s1">String lastname</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">lastname </span><span class="s2">= </span><span class="s1">lastname</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getEmail</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">email</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setEmail</span><span class="s2">(</span><span class="s1">String email</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">email </span><span class="s2">= </span><span class="s1">email</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getPassword</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">password</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setPassword</span><span class="s2">(</span><span class="s1">String password</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">password </span><span class="s2">= </span><span class="s1">password</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">GENDER getGender</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">gender</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setGender</span><span class="s2">(</span><span class="s1">GENDER gender</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">gender </span><span class="s2">= </span><span class="s1">gender</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">String getUsername</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">username</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public void </span><span class="s1">setUsername</span><span class="s2">(</span><span class="s1">String username</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">username </span><span class="s2">= </span><span class="s1">username</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public </span><span class="s1">USERR</span><span class="s2">(</span><span class="s1">String firstname</span><span class="s2">, </span><span class="s1">String lastname</span><span class="s2">, </span><span class="s1">String email</span><span class="s2">, </span><span class="s1">String password</span><span class="s2">, </span><span class="s1">GENDER gender</span><span class="s2">, </span><span class="s1">String username</span><span class="s2">) {</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">firstname </span><span class="s2">= </span><span class="s1">firstname</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">lastname </span><span class="s2">= </span><span class="s1">lastname</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">email </span><span class="s2">= </span><span class="s1">email</span><span class="s2">;</span>
+        <span class="s3">// Convert the password to a number (you can use a more sophisticated conversion algorithm if needed)</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">password </span><span class="s2">= </span><span class="s1">password</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">gender </span><span class="s2">= </span><span class="s1">gender</span><span class="s2">;</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">username </span><span class="s2">= </span><span class="s1">username</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s3">// Getters and setters...</span>
+
+    <span class="s1">@Override</span>
+    <span class="s0">public </span><span class="s1">String toString</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s4">&quot;USERR{&quot; </span><span class="s2">+</span>
+                <span class="s4">&quot;firstname='&quot; </span><span class="s2">+ </span><span class="s1">firstname </span><span class="s2">+ </span><span class="s4">'</span><span class="s0">\'</span><span class="s4">' </span><span class="s2">+</span>
+                <span class="s4">&quot;, lastname='&quot; </span><span class="s2">+ </span><span class="s1">lastname </span><span class="s2">+ </span><span class="s4">'</span><span class="s0">\'</span><span class="s4">' </span><span class="s2">+</span>
+                <span class="s4">&quot;, email='&quot; </span><span class="s2">+ </span><span class="s1">email </span><span class="s2">+ </span><span class="s4">'</span><span class="s0">\'</span><span class="s4">' </span><span class="s2">+</span>
+                <span class="s4">&quot;, password=&quot; </span><span class="s2">+ </span><span class="s1">password </span><span class="s2">+</span>
+                <span class="s4">&quot;, gender=&quot; </span><span class="s2">+ </span><span class="s1">gender </span><span class="s2">+</span>
+                <span class="s4">&quot;, username='&quot; </span><span class="s2">+ </span><span class="s1">username </span><span class="s2">+ </span><span class="s4">'</span><span class="s0">\'</span><span class="s4">' </span><span class="s2">+</span>
+                <span class="s4">'}'</span><span class="s2">;</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

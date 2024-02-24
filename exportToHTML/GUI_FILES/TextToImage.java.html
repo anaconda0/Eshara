@@ -1,0 +1,164 @@
+<html>
+<head>
+<title>TextToImage.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TextToImage.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">Mat</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">BufferedImage</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">FileNotFoundException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">ImageIcon</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">DataBufferByte</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">lang</span><span class="s2">.</span><span class="s1">String</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">List</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JFrame</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JLabel</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">Timer</span><span class="s2">;</span>
+<span class="s0">import static </span><span class="s1">org</span><span class="s2">.</span><span class="s1">opencv</span><span class="s2">.</span><span class="s1">imgcodecs</span><span class="s2">.</span><span class="s1">Imgcodecs</span><span class="s2">.</span><span class="s1">imread</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">TextToImage  </span><span class="s2">{</span>
+
+    <span class="s0">private static </span><span class="s1">HashMap</span><span class="s2">&lt;</span><span class="s1">String</span><span class="s2">, </span><span class="s1">Mat</span><span class="s2">&gt; </span><span class="s1">textToImage </span><span class="s2">= </span><span class="s0">new </span><span class="s1">HashMap</span><span class="s2">&lt;&gt;();</span>
+    <span class="s0">static </span><span class="s2">{</span>
+        <span class="s1">String filePath </span><span class="s2">= </span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Speech To Text</span><span class="s0">\\</span><span class="s3">Sphinx extract</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s3">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s3">src</span><span class="s0">\\</span><span class="s3">GUI_FILES</span><span class="s0">\\</span><span class="s3">TTIHashMap.txt&quot;</span><span class="s2">;</span>
+        <span class="s1">uploadHashMapFromFile</span><span class="s2">(</span><span class="s1">filePath</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">BufferedImage Mat2BufferedImage</span><span class="s2">(</span><span class="s1">Mat m</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">m </span><span class="s2">== </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Input Mat is null.&quot;</span><span class="s2">);</span>
+            <span class="s0">return null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">int </span><span class="s1">type </span><span class="s2">= </span><span class="s1">BufferedImage</span><span class="s2">.</span><span class="s1">TYPE_BYTE_GRAY</span><span class="s2">;</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">m</span><span class="s2">.</span><span class="s1">channels</span><span class="s2">() &gt; </span><span class="s4">1</span><span class="s2">) {</span>
+            <span class="s1">type </span><span class="s2">= </span><span class="s1">BufferedImage</span><span class="s2">.</span><span class="s1">TYPE_3BYTE_BGR</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s0">int </span><span class="s1">bufferSize </span><span class="s2">= </span><span class="s1">m</span><span class="s2">.</span><span class="s1">channels</span><span class="s2">() * </span><span class="s1">m</span><span class="s2">.</span><span class="s1">cols</span><span class="s2">() * </span><span class="s1">m</span><span class="s2">.</span><span class="s1">rows</span><span class="s2">();</span>
+        <span class="s0">byte</span><span class="s2">[] </span><span class="s1">b </span><span class="s2">= </span><span class="s0">new byte</span><span class="s2">[</span><span class="s1">bufferSize</span><span class="s2">];</span>
+
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">m</span><span class="s2">.</span><span class="s1">isContinuous</span><span class="s2">()) {</span>
+            <span class="s1">m</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s4">0</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s1">b</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;The data in Mat is not continuous.&quot;</span><span class="s2">);</span>
+            <span class="s0">return null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+
+        <span class="s1">BufferedImage image </span><span class="s2">= </span><span class="s0">new </span><span class="s1">BufferedImage</span><span class="s2">(</span><span class="s1">m</span><span class="s2">.</span><span class="s1">cols</span><span class="s2">(), </span><span class="s1">m</span><span class="s2">.</span><span class="s1">rows</span><span class="s2">(), </span><span class="s1">type</span><span class="s2">);</span>
+        <span class="s0">final byte</span><span class="s2">[] </span><span class="s1">targetPixels </span><span class="s2">= ((</span><span class="s1">DataBufferByte</span><span class="s2">) </span><span class="s1">image</span><span class="s2">.</span><span class="s1">getRaster</span><span class="s2">().</span><span class="s1">getDataBuffer</span><span class="s2">()).</span><span class="s1">getData</span><span class="s2">();</span>
+        <span class="s1">System</span><span class="s2">.</span><span class="s1">arraycopy</span><span class="s2">(</span><span class="s1">b</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s1">targetPixels</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s1">b</span><span class="s2">.</span><span class="s1">length</span><span class="s2">);</span>
+
+        <span class="s0">return </span><span class="s1">image</span><span class="s2">;</span>
+    <span class="s2">}</span>
+    <span class="s0">private static </span><span class="s1">JLabel loadImage</span><span class="s2">(</span><span class="s1">BufferedImage image</span><span class="s2">) {</span>
+        <span class="s0">if </span><span class="s2">(</span><span class="s1">image </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+            <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s1">image</span><span class="s2">);</span>
+            <span class="s0">return new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">);</span>
+        <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+            <span class="s0">return null</span><span class="s2">;</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+    <span class="s0">public static void </span><span class="s1">displayImages</span><span class="s2">(</span><span class="s1">List</span><span class="s2">&lt;</span><span class="s1">BufferedImage</span><span class="s2">&gt; </span><span class="s1">textToImageList</span><span class="s2">, </span><span class="s0">int </span><span class="s1">delay</span><span class="s2">) {</span>
+        <span class="s1">JFrame jFrame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">(</span><span class="s3">&quot;Image Viewer&quot;</span><span class="s2">);</span>
+        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FlowLayout</span><span class="s2">(</span><span class="s1">FlowLayout</span><span class="s2">.</span><span class="s1">LEFT</span><span class="s2">)); </span><span class="s5">// Set left alignment</span>
+        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s4">600</span><span class="s2">, </span><span class="s4">1000</span><span class="s2">));</span>
+        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+
+        <span class="s1">Timer timer </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Timer</span><span class="s2">(</span><span class="s1">delay</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s0">int</span><span class="s2">[] </span><span class="s1">index </span><span class="s2">= {</span><span class="s4">0</span><span class="s2">};</span>
+
+        <span class="s1">timer</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">index</span><span class="s2">[</span><span class="s4">0</span><span class="s2">] &lt; </span><span class="s1">textToImageList</span><span class="s2">.</span><span class="s1">size</span><span class="s2">()) {</span>
+                    <span class="s1">BufferedImage bufferedImage </span><span class="s2">= </span><span class="s1">textToImageList</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">index</span><span class="s2">[</span><span class="s4">0</span><span class="s2">]);</span>
+                    <span class="s1">JLabel imageLabel </span><span class="s2">= </span><span class="s1">loadImage</span><span class="s2">(</span><span class="s1">bufferedImage</span><span class="s2">);</span>
+                    <span class="s0">if </span><span class="s2">(</span><span class="s1">imageLabel </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">getContentPane</span><span class="s2">().</span><span class="s1">removeAll</span><span class="s2">();</span>
+                        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">imageLabel</span><span class="s2">);</span>
+                        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">revalidate</span><span class="s2">();</span>
+                        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">repaint</span><span class="s2">();</span>
+                        <span class="s1">index</span><span class="s2">[</span><span class="s4">0</span><span class="s2">]++;</span>
+                    <span class="s2">}</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">timer</span><span class="s2">.</span><span class="s1">stop</span><span class="s2">();</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">timer</span><span class="s2">.</span><span class="s1">start</span><span class="s2">();</span>
+
+        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">pack</span><span class="s2">();</span>
+        <span class="s1">jFrame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">BufferedImage</span><span class="s2">&gt; </span><span class="s1">textToImageArrayList</span><span class="s2">(</span><span class="s1">String S</span><span class="s2">) {</span>
+
+        <span class="s1">String s1 </span><span class="s2">= </span><span class="s1">S</span><span class="s2">.</span><span class="s1">toUpperCase</span><span class="s2">();</span>
+        <span class="s1">String</span><span class="s2">[] </span><span class="s1">wordArray </span><span class="s2">= </span><span class="s1">S</span><span class="s2">.</span><span class="s1">split</span><span class="s2">(</span><span class="s3">&quot;</span><span class="s0">\\</span><span class="s3">s+&quot;</span><span class="s2">);</span>
+        <span class="s1">ArrayList</span><span class="s2">&lt;</span><span class="s1">BufferedImage</span><span class="s2">&gt; </span><span class="s1">textToImageList </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ArrayList</span><span class="s2">&lt;&gt;();</span>
+
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">String word </span><span class="s2">: </span><span class="s1">wordArray</span><span class="s2">) {</span>
+            <span class="s1">BufferedImage image </span><span class="s2">= </span><span class="s1">Mat2BufferedImage</span><span class="s2">(</span><span class="s1">textToImage</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">word</span><span class="s2">));</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">image </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s1">textToImageList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">image</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                <span class="s0">char</span><span class="s2">[] </span><span class="s1">charArray </span><span class="s2">= </span><span class="s1">word</span><span class="s2">.</span><span class="s1">toCharArray</span><span class="s2">();</span>
+                <span class="s0">for </span><span class="s2">(</span><span class="s0">char </span><span class="s1">ch </span><span class="s2">: </span><span class="s1">charArray</span><span class="s2">) {</span>
+                    <span class="s1">BufferedImage charImage </span><span class="s2">= </span><span class="s1">Mat2BufferedImage</span><span class="s2">(</span><span class="s1">textToImage</span><span class="s2">.</span><span class="s1">get</span><span class="s2">(</span><span class="s1">String</span><span class="s2">.</span><span class="s1">valueOf</span><span class="s2">(</span><span class="s1">ch</span><span class="s2">)));</span>
+                    <span class="s0">if </span><span class="s2">(</span><span class="s1">charImage </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                        <span class="s1">textToImageList</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">charImage</span><span class="s2">);</span>
+                    <span class="s2">}</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}       </span><span class="s0">return </span><span class="s1">textToImageList</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">uploadHashMapFromFile</span><span class="s2">(</span><span class="s1">String filePath</span><span class="s2">) {</span>
+        <span class="s0">try </span><span class="s2">(</span><span class="s1">Scanner scanner </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Scanner</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s1">filePath</span><span class="s2">))) {</span>
+            <span class="s0">while </span><span class="s2">(</span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">hasNextLine</span><span class="s2">()) {</span>
+                <span class="s1">String</span><span class="s2">[] </span><span class="s1">parts </span><span class="s2">= </span><span class="s1">scanner</span><span class="s2">.</span><span class="s1">nextLine</span><span class="s2">().</span><span class="s1">split</span><span class="s2">(</span><span class="s3">&quot;,&quot;</span><span class="s2">);</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">parts</span><span class="s2">.</span><span class="s1">length </span><span class="s2">&gt;= </span><span class="s4">2</span><span class="s2">) { </span><span class="s5">// Check if the array has at least two elements</span>
+                    <span class="s0">try </span><span class="s2">{</span>
+                        <span class="s1">String key </span><span class="s2">= </span><span class="s1">parts</span><span class="s2">[</span><span class="s4">1</span><span class="s2">];</span>
+                        <span class="s1">Mat value </span><span class="s2">= </span><span class="s1">imread</span><span class="s2">(</span><span class="s1">parts</span><span class="s2">[</span><span class="s4">0</span><span class="s2">]);</span>
+                        <span class="s1">textToImage</span><span class="s2">.</span><span class="s1">put</span><span class="s2">(</span><span class="s1">key</span><span class="s2">, </span><span class="s1">value</span><span class="s2">);</span>
+                    <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">NumberFormatException e</span><span class="s2">) {</span>
+                        <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Invalid format for key: &quot; </span><span class="s2">+ </span><span class="s1">parts</span><span class="s2">[</span><span class="s4">1</span><span class="s2">]);</span>
+                    <span class="s2">}</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">System</span><span class="s2">.</span><span class="s1">err</span><span class="s2">.</span><span class="s1">println</span><span class="s2">(</span><span class="s3">&quot;Invalid line format: &quot; </span><span class="s2">+ </span><span class="s1">Arrays</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">(</span><span class="s1">parts</span><span class="s2">));</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">FileNotFoundException e</span><span class="s2">) {</span>
+            <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+
+
+<span class="s2">}</span></pre>
+</body>
+</html>

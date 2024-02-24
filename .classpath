@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="src" path="target/generated-sources/annotations"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.github.goxr3plus:java-google-speech-api:V2.1"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.github.axet:java-flac-encoder:0.3.8"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: org.json:json:20150729"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Maven: com.google.guava:guava:22.0"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/cmu_time_awb"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/opencv-480"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/x64"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/marytts-builder-5.2-jar-with-dependencies"/>
+	<classpathentry kind="output" path="target/classes"/>
+</classpath>

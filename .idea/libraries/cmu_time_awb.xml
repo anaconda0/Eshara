@@ -1,0 +1,15 @@
+<component name="libraryTable">
+  <library name="cmu_time_awb">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/cmu_time_awb.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/cmu_us_kal.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/en_us.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/freetts-jsapi10.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/freetts.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/jsapi.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../../../../../HANDSTALK/Jars/freetts-1.2/lib/mbrola.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component LANGUAGE_LEVEL="JDK_1_8" inheritJdk="true">
+	<output-test url="file://$MODULE_DIR$/target/test-classes"/>
+	<contentEntry url="file://$MODULE_DIR$">
+		<excludeFolder url="file://$MODULE_DIR$/target"/>
+	</contentEntry>
+	<levels>
+		<level name="Maven: com.github.goxr3plus:java-google-speech-api:V2.1" value="project"/>
+		<level name="Maven: com.github.axet:java-flac-encoder:0.3.8" value="project"/>
+		<level name="Maven: org.json:json:20150729" value="project"/>
+		<level name="Maven: com.google.guava:guava:22.0" value="project"/>
+		<level name="cmu_time_awb" value="project"/>
+		<level name="opencv-480" value="project"/>
+		<level name="x64" value="project"/>
+		<level name="marytts-builder-5.2-jar-with-dependencies" value="project"/>
+	</levels>
+</component>

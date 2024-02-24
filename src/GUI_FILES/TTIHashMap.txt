@@ -1,0 +1,194 @@
+﻿New Images/Screenshots/Cold.png,cold
+New Images/Screenshots/Color.png,color
+New Images/Screenshots/COME.png,come
+New Images/New sign language/Computer.png,computer
+New Images/Screenshots/COUNT.png,count
+New Images/Screenshots/COUSIN.png,cousin
+New Images/Screenshots/CRAKER.png,craker
+Alphapet/D.jpg,d
+New Images/Screenshots/Dance.png,dance
+New Images/Screenshots/Dark.png,dark
+New Images/Screenshots/DEER.png,deer
+New Images/New sign language/Doctor.png,doctor
+New Images/Screenshots/doll.png,doll
+New Images/Screenshots/dont.png,dont
+New Images/Screenshots/Dream.png,dream
+New Images/Screenshots/Dress.png,dress
+New Images/Screenshots/Drink.png,drink
+New Images/Screenshots/Drop.png,drop
+Alphapet/E.jpg,e
+New Images/Screenshots/Earing.png,earing
+New Images/Screenshots/Eat.png,eat
+New Images/Screenshots/Elephant.png,elephant
+New Images/New sign language/Enjoy.jpg,enjoy
+New Images/New sign language/Exam.png,exam
+New Images/New sign language/Excited.png,excited
+New Images/New sign language/Excuse Me.png,excuse me
+New Images/Screenshots/Exersize.png,exersize
+Alphapet/F.jpg,f
+New Images/Screenshots/Family.png,family
+New Images/Screenshots/Find.png,find
+New Images/Screenshots/Finished.png,finished
+New Images/New sign language/Fire.jpg,fire
+New Images/Screenshots/Flashlight.png,flashlight
+New Images/Screenshots/Fly.png,fly
+New Images/New sign language/Friend.png,friend
+New Images/New sign language/Frog.jpg,frog
+New Images/New sign language/Fruit.jpg,fruit
+New Images/Screenshots/Fun.png,fun
+Alphapet/G.jpg,g
+New Images/Screenshots/Garage.png,garage
+New Images/Screenshots/Garden.png,garden
+New Images/Screenshots/Girl.png,girl
+New Images/New sign language/Give.jpg,give
+New Images/New sign language/GO.jpg,go
+New Images/New sign language/God.png,god
+New Images/New sign language/GOOD NIGHT.png,good night
+New Images/Screenshots/GoodMorning.png,goodmorning
+New Images/Screenshots/Goose.png,goose
+New Images/Screenshots/Grandfather.png,grandfather
+New Images/Screenshots/Grandmother.png,grandmother
+New Images/Screenshots/Gross.png,gross
+Alphapet/H.jpg,h
+New Images/Screenshots/Hair.png,hair
+New Images/New sign language/Happy.png,happy
+New Images/Screenshots/Hat.png,hat
+New Images/New sign language/Have.png,have
+New Images/New sign language/Hear.png,hear
+New Images/New sign language/Heart.jpg,heart
+HANDSTALK APPLICATION BACK 2\New Images\Screenshots\hi.jpg,hi
+New Images/Screenshots/Hit.png,hit
+New Images/New sign language/Holiday.png,holiday
+New Images/New sign language/HOSPITAL.png,hospital
+New Images/Screenshots/Hot.png,hot
+New Images/Screenshots/HowMuch.png,howmuch
+HANDSTALK APPLICATION BACK 2\New Images\Screenshots\how-webp.png,how
+New Images/New sign language/Hungry.jpg,hungry
+New Images/New sign language/I Love You.jpg,i love you
+Alphapet/I.jpg,i
+HANDSTALK APPLICATION BACK 2\New Images\Screenshots\images.png,image
+Alphapet/J.jpg,j
+New Images/Screenshots/Juice.png,juice
+Alphapet/K.jpg,k
+New Images/Screenshots/Kiss.png,kiss
+Alphapet/L.jpg,l
+New Images/New sign language/Laptop.png,laptop
+New Images/Screenshots/laundry.png,laundry
+New Images/Screenshots/Light.png,light
+New Images/New sign language/Like.png,like
+New Images/New sign language/Listen.png,listen
+New Images/Screenshots/Litter.png,litter
+New Images/Screenshots/lookUP.png,lookup
+Alphapet/M.jpg,m
+New Images/Screenshots/Mad.png,mad
+New Images/Screenshots/MILK.png,milk
+New Images/New sign language/Monster.jpeg,monster
+New Images/New sign language/Moon.jpg,moon
+New Images/New sign language/MORE.jpg,more
+Alphapet/N.jpg,n
+New Images/New sign language/Nice.png,nice
+New Images/New sign language/Night.jpg,night
+New Images/New sign language/Numbers/Number 1-Filled-With Label.jpg,1
+New Images/New sign language/Numbers/Number 2-Filled-With Label.jpg,2
+New Images/New sign language/Numbers/Number 3-Filled-With Label.jpg,3
+New Images/New sign language/Numbers/Number 4-Filled-With Label.jpg,4
+New Images/New sign language/Numbers/Number 5-Filled-With Label.jpg,5
+New Images/New sign language/Numbers/Number 6-Filled-With Label.jpg,6
+New Images/New sign language/Numbers/Number 7-Filled-With Label.jpg,7
+New Images/New sign language/Numbers/Number 8-Filled-With Label.jpg,8
+New Images/New sign language/Numbers/Number 9-Filled-With Label.jpg,9
+New Images/New sign language/Nurse.png,nurse
+Alphapet/O.jpg,o
+New Images/New sign language/Old.jpg,old
+New Images/New sign language/On.png,on
+New Images/New sign language/Outside.jpg,outside
+Alphapet/P.jpg,p
+New Images/New sign language/Phone.png,phone
+New Images/New sign language/Pink.jpg,pink
+New Images/New sign language/Playground.jpg,playground
+New Images/New sign language/please.jpg,please
+New Images/New sign language/PRACTICE.png,practice
+New Images/New sign language/Pray.png,pray
+Alphapet/Q.jpg,q
+Alphapet/R.jpg,r
+New Images/New sign language/Rice.jpg,rice
+New Images/New sign language/Run.png,run
+Alphapet/S.jpg,s
+New Images/New sign language/Same.jpg,same
+New Images/New sign language/SATURDAY.png,saturday
+New Images/Screenshots/School.png,school
+New Images/New sign language/Science.png,science
+New Images/New sign language/Seal.jpeg,seal
+New Images/New sign language/See.jpg,see
+New Images/New sign language/Shirt.jpeg,shirt
+New Images/New sign language/Sick.png,sick
+New Images/New sign language/Sign.png,sign
+New Images/New sign language/Sister.jpg,sister
+New Images/Screenshots/Small.png,small
+New Images/New sign language/Smart.png,smart
+New Images/New sign language/Smell.png,smell
+New Images/Screenshots/Smelly.png,smelly
+New Images/New sign language/Smile.jpeg,smile
+New Images/New sign language/Sorry.jpg,sorry
+New Images/New sign language/Stars.jpeg,stars
+New Images/New sign language/Start.png,start
+New Images/New sign language/Sun.jpg,sun
+New Images/New sign language/SUNDAY.png,sunday
+New Images/New sign language/Swim.png,swim
+Alphapet/T.jpg,t
+New Images/New sign language/Talk.png,talk
+New Images/New sign language/Thank you.png,thank you
+New Images/New sign language/THANKSGIVING.png,thanksgiving
+New Images/New sign language/Touch.png,touch
+Alphapet/U.jpg,u
+New Images/Screenshots/UMBRELLA.png,umbrella
+New Images/New sign language/Uncle.jpg,uncle
+New Images/New sign language/Use.png,use
+Alphapet/V.jpg,v
+New Images/New sign language/VEHICLE.png,vehicle
+Alphapet/W.jpg,w
+New Images/New sign language/Walk.png,walk
+New Images/New sign language/Want.jpg,want
+New Images/New sign language/Water.jpg,water
+New Images/New sign language/Wedding.png,wedding
+New Images/Screenshots/WELCOME.png,welcome
+New Images/New sign language/What.jpeg,what
+New Images/New sign language/When.jpeg,when
+HANDSTALK APPLICATION BACK 2\New Images\Screenshots\who.png,who
+New Images/New sign language/Woman.jpg,woman
+New Images/New sign language/Write.png,write
+Alphapet/X.jpg,x
+Alphapet/Y.jpg,y
+New Images/New sign language/Yes.jpg,yes
+New Images/New sign language/Yogurt.jpg,yogurt
+Alphapet/Z.jpg,z
+HANDSTALK APPLICATION BACK 2\New Images\Screenshots\zero.png,0
+Alphapet/A.jpg,a
+New Images/Screenshots/Afraid.png,afraid
+New Images/Screenshots/Again.png,again
+New Images/Screenshots/Ambulance.png,ambulance
+New Images/Screenshots/Angry.png,angry
+New Images/Screenshots/Animal.png,animal
+New Images/Screenshots/Apple.png,apple
+New Images/Screenshots/Aunt.png,aunt
+Alphapet/B.jpg,b
+New Images/Screenshots/Baby.png,baby
+New Images/Screenshots/BAD.png,bad
+New Images/Screenshots/Ball.png,ball
+New Images/Screenshots/bandage.png,bandage
+New Images/New sign language/Bathroom.png,bathroom
+New Images/New sign language/Be careful.png,be careful
+New Images/Screenshots/Bell.png,bell
+New Images/Screenshots/Birthday.png,birthday
+New Images/New sign language/Boy.jpg,boy
+New Images/New sign language/Brother.jpg,brother
+New Images/Screenshots/Butterfly.png,butterfly
+New Images/New sign language/BYE-BYE.png,bye-bye
+Alphapet/C.jpg,c
+New Images/New sign language/Cake.png,cake
+New Images/Screenshots/camera.png,camera
+New Images/New sign language/Can.png,can
+New Images/New sign language/Cat.jpg,cat
+New Images/New sign language/CELEBRATE.png,celebrate
+New Images/Screenshots/CHICKEN.png,chicken
+New Images/New sign language/Children.png,children

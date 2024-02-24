@@ -1,0 +1,178 @@
+<html>
+<head>
+<title>SpeechToTextUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+SpeechToTextUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">BoxLayout</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JButton</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JFrame</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JLabel</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JPanel</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JScrollPane</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.</span><span class="s1">JTextArea</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">microphone</span><span class="s2">.</span><span class="s1">Microphone</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">recognizer</span><span class="s2">.</span><span class="s1">GSpeechDuplex</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">recognizer</span><span class="s2">.</span><span class="s1">GSpeechResponseListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">recognizer</span><span class="s2">.</span><span class="s1">GoogleResponse</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">net</span><span class="s2">.</span><span class="s1">sourceforge</span><span class="s2">.</span><span class="s1">javaflacencoder</span><span class="s2">.</span><span class="s1">FLACFileWriter</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">microphone</span><span class="s2">.</span><span class="s1">Microphone</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">recognizer</span><span class="s2">.</span><span class="s1">GSpeechDuplex</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">recognizer</span><span class="s2">.</span><span class="s1">GSpeechResponseListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">com</span><span class="s2">.</span><span class="s1">darkprograms</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">recognizer</span><span class="s2">.</span><span class="s1">GoogleResponse</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">net</span><span class="s2">.</span><span class="s1">sourceforge</span><span class="s2">.</span><span class="s1">javaflacencoder</span><span class="s2">.</span><span class="s1">FLACFileWriter</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">SpeechToTextUI </span><span class="s2">{</span>
+
+    <span class="s0">private static </span><span class="s1">GSpeechDuplex duplex</span><span class="s2">;</span>
+    <span class="s0">private static </span><span class="s1">Microphone mic</span><span class="s2">;</span>
+
+    <span class="s0">public static </span><span class="s1">GSpeechDuplex getDuplex</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">duplex</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">setDuplex</span><span class="s2">(</span><span class="s1">GSpeechDuplex duplex</span><span class="s2">) {</span>
+        <span class="s1">SpeechToTextUI</span><span class="s2">.</span><span class="s1">duplex </span><span class="s2">= </span><span class="s1">duplex</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static </span><span class="s1">Microphone getMic</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">mic</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">setMic</span><span class="s2">(</span><span class="s1">Microphone mic</span><span class="s2">) {</span>
+        <span class="s1">SpeechToTextUI</span><span class="s2">.</span><span class="s1">mic </span><span class="s2">= </span><span class="s1">mic</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">display</span><span class="s2">() {</span>
+        <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">(</span><span class="s3">&quot;Speech to Text&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s4">1920</span><span class="s2">, </span><span class="s4">1000</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setExtendedState</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">MAXIMIZED_BOTH</span><span class="s2">); </span><span class="s5">// Maximize window</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setResizable</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">JTextArea textArea </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextArea</span><span class="s2">();</span>
+        <span class="s1">textArea</span><span class="s2">.</span><span class="s1">setEditable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s1">JScrollPane scrollPane </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JScrollPane</span><span class="s2">(</span><span class="s1">textArea</span><span class="s2">);</span>
+        <span class="s1">scrollPane</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s4">1800</span><span class="s2">, </span><span class="s4">1000</span><span class="s2">)); </span><span class="s5">// Set preferred size</span>
+
+        <span class="s1">JButton startButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Start Listening&quot;</span><span class="s2">);</span>
+        <span class="s1">JButton stopButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Stop Listening&quot;</span><span class="s2">);</span>
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Back to Home&quot;</span><span class="s2">);</span>
+        <span class="s1">stopButton</span><span class="s2">.</span><span class="s1">setEnabled</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s3">&quot;&quot;</span><span class="s2">); </span><span class="s5">// Replace with the path to your image</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+
+        <span class="s5">// Initialize the speech recognizer and microphone</span>
+        <span class="s1">initSpeechRecognizer</span><span class="s2">(</span><span class="s1">textArea</span><span class="s2">);</span>
+
+        <span class="s1">startButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent evt</span><span class="s2">) {</span>
+                <span class="s1">startSpeechRecognition</span><span class="s2">();</span>
+                <span class="s1">startButton</span><span class="s2">.</span><span class="s1">setEnabled</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+                <span class="s1">stopButton</span><span class="s2">.</span><span class="s1">setEnabled</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s1">stopButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent arg0</span><span class="s2">) {</span>
+                <span class="s1">stopSpeechRecognition</span><span class="s2">();</span>
+                <span class="s1">startButton</span><span class="s2">.</span><span class="s1">setEnabled</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+                <span class="s1">stopButton</span><span class="s2">.</span><span class="s1">setEnabled</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+            <span class="s1">MainGUI2</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+        <span class="s2">});</span>
+
+        <span class="s1">JPanel buttonPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">();</span>
+        <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">startButton</span><span class="s2">);</span>
+        <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">stopButton</span><span class="s2">);</span>
+        <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">backToHomeButton</span><span class="s2">);</span>
+
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">BorderLayout</span><span class="s2">());</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">scrollPane</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">buttonPanel</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">SOUTH</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">JFrame frame</span><span class="s2">) {</span>
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Semester 3</span><span class="s0">\\</span><span class="s3">OneNot Notebooks</span><span class="s0">\\</span><span class="s3">Object Oriented Programming (CCS2303)</span><span class="s0">\\</span><span class="s3">Material</span><span class="s0">\\</span><span class="s3">HandsTalk Project</span><span class="s0">\\</span><span class="s3">Creative Elements</span><span class="s0">\\</span><span class="s3">Logo</span><span class="s0">\\</span><span class="s3">Handstalk logo.png&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static </span><span class="s1">JButton createStyledButton</span><span class="s2">(</span><span class="s1">String text</span><span class="s2">) {</span>
+        <span class="s1">JButton button </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s3">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s4">14</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setBorder</span><span class="s2">(</span><span class="s1">BorderFactory</span><span class="s2">.</span><span class="s1">createLineBorder</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">, </span><span class="s4">2</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s4">150</span><span class="s2">, </span><span class="s4">50</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">addMouseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseAdapter</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">mouseEntered</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLUE</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public void </span><span class="s1">mouseExited</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s0">return </span><span class="s1">button</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">initSpeechRecognizer</span><span class="s2">(</span><span class="s1">JTextArea responseArea</span><span class="s2">) {</span>
+        <span class="s1">mic </span><span class="s2">= </span><span class="s0">new </span><span class="s1">Microphone</span><span class="s2">(</span><span class="s1">FLACFileWriter</span><span class="s2">.</span><span class="s1">FLAC</span><span class="s2">);</span>
+        <span class="s1">duplex </span><span class="s2">= </span><span class="s0">new </span><span class="s1">GSpeechDuplex</span><span class="s2">(</span><span class="s3">&quot;AIzaSyBOti4mM-6x9WDnZIjIeyEU21OpBXqWBgw&quot;</span><span class="s2">); </span><span class="s5">// Replace with your API key</span>
+        <span class="s1">duplex</span><span class="s2">.</span><span class="s1">setLanguage</span><span class="s2">(</span><span class="s3">&quot;en&quot;</span><span class="s2">);</span>
+        <span class="s1">duplex</span><span class="s2">.</span><span class="s1">addResponseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">GSpeechResponseListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">onResponse</span><span class="s2">(</span><span class="s1">GoogleResponse googleResponse</span><span class="s2">) {</span>
+                <span class="s1">String output </span><span class="s2">= </span><span class="s1">googleResponse</span><span class="s2">.</span><span class="s1">getResponse</span><span class="s2">();</span>
+                <span class="s0">if </span><span class="s2">(</span><span class="s1">output </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                    <span class="s1">responseArea</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s1">output </span><span class="s2">+ </span><span class="s3">&quot;</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">else </span><span class="s2">{</span>
+                    <span class="s1">responseArea</span><span class="s2">.</span><span class="s1">append</span><span class="s2">(</span><span class="s3">&quot;(no response)</span><span class="s0">\n</span><span class="s3">&quot;</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">startSpeechRecognition</span><span class="s2">() {</span>
+        <span class="s0">new </span><span class="s1">Thread</span><span class="s2">(() </span><span class="s1">-&gt; </span><span class="s2">{</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">duplex</span><span class="s2">.</span><span class="s1">recognize</span><span class="s2">(</span><span class="s1">mic</span><span class="s2">.</span><span class="s1">getTargetDataLine</span><span class="s2">(), </span><span class="s1">mic</span><span class="s2">.</span><span class="s1">getAudioFormat</span><span class="s2">());</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">Exception ex</span><span class="s2">) {</span>
+                <span class="s1">ex</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+                <span class="s1">JOptionPane</span><span class="s2">.</span><span class="s1">showMessageDialog</span><span class="s2">(</span><span class="s0">null</span><span class="s2">, </span><span class="s3">&quot;Error starting the speech recognition engine.&quot;</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}).</span><span class="s1">start</span><span class="s2">();</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">stopSpeechRecognition</span><span class="s2">() {</span>
+        <span class="s1">mic</span><span class="s2">.</span><span class="s1">close</span><span class="s2">();</span>
+        <span class="s1">duplex</span><span class="s2">.</span><span class="s1">stopSpeechRecognition</span><span class="s2">();</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

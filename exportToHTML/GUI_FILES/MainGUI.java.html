@@ -1,0 +1,115 @@
+<html>
+<head>
+<title>MainGUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+.s5 { color: #7a7e85;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainGUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">image</span><span class="s2">.</span><span class="s1">BufferedImage</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">File</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">io</span><span class="s2">.</span><span class="s1">IOException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">imageio</span><span class="s2">.</span><span class="s1">ImageIO</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">MainGUI </span><span class="s0">extends </span><span class="s1">JFrame </span><span class="s2">{</span>
+
+    <span class="s0">public </span><span class="s1">MainGUI</span><span class="s2">() {</span>
+        <span class="s1">setTitle</span><span class="s2">(</span><span class="s3">&quot;ESHARA&quot;</span><span class="s2">);</span>
+        <span class="s1">setSize</span><span class="s2">(</span><span class="s4">600</span><span class="s2">, </span><span class="s4">400</span><span class="s2">);</span>
+        <span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+        <span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">initComponents</span><span class="s2">();</span>
+    <span class="s2">}</span>
+    <span class="s0">private void </span><span class="s1">initComponents</span><span class="s2">() {</span>
+        <span class="s5">// Create a welcome label</span>
+        <span class="s1">JLabel welcomeLabel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JLabel</span><span class="s2">(</span><span class="s3">&quot;Welcome to ESHARA&quot;</span><span class="s2">, </span><span class="s1">SwingConstants</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+        <span class="s1">welcomeLabel</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s3">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s4">50</span><span class="s2">));</span>
+        <span class="s1">welcomeLabel</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">white</span><span class="s2">);</span>
+
+        <span class="s5">// Create buttons</span>
+        <span class="s1">JButton signInButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s3">&quot;Sign In&quot;</span><span class="s2">);</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s3">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s4">25</span><span class="s2">)); </span><span class="s5">// Adjust the size as needed</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLUE</span><span class="s2">); </span><span class="s5">// Choose the color you prefer</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">); </span><span class="s5">// This changes the color of the text on the button</span>
+
+        <span class="s1">JButton signUpButton </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s3">&quot;Sign Up&quot;</span><span class="s2">);</span>
+        <span class="s1">signUpButton</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s3">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s4">25</span><span class="s2">)); </span><span class="s5">// Adjust the size as needed</span>
+        <span class="s1">signUpButton</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLUE</span><span class="s2">); </span><span class="s5">// Choose the color you prefer</span>
+        <span class="s1">signUpButton</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">); </span><span class="s5">// This changes the color of the text on the button</span>
+
+        <span class="s5">// Add action listeners to buttons</span>
+        <span class="s1">signInButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; openSignInForm</span><span class="s2">());</span>
+        <span class="s1">signUpButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; openSignUpForm</span><span class="s2">());</span>
+
+        <span class="s5">// Create a background panel with an image</span>
+        <span class="s1">JPanel backgroundPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">protected void </span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">Graphics g</span><span class="s2">) {</span>
+                <span class="s0">super</span><span class="s2">.</span><span class="s1">paintComponent</span><span class="s2">(</span><span class="s1">g</span><span class="s2">);</span>
+                <span class="s0">try </span><span class="s2">{</span>
+                    <span class="s1">BufferedImage image </span><span class="s2">= </span><span class="s1">ImageIO</span><span class="s2">.</span><span class="s1">read</span><span class="s2">(</span><span class="s0">new </span><span class="s1">File</span><span class="s2">(</span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Speech To Text</span><span class="s0">\\</span><span class="s3">Sphinx extract</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s3">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s3">resources_images</span><span class="s0">\\</span><span class="s3">back ver 2.jpeg&quot;</span><span class="s2">)); </span><span class="s5">// Replace with your image path</span>
+                    <span class="s1">g</span><span class="s2">.</span><span class="s1">drawImage</span><span class="s2">(</span><span class="s1">image</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s4">0</span><span class="s2">, </span><span class="s0">this</span><span class="s2">.</span><span class="s1">getWidth</span><span class="s2">(), </span><span class="s0">this</span><span class="s2">.</span><span class="s1">getHeight</span><span class="s2">(), </span><span class="s0">this</span><span class="s2">);</span>
+                <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">IOException e</span><span class="s2">) {</span>
+                    <span class="s1">e</span><span class="s2">.</span><span class="s1">printStackTrace</span><span class="s2">();</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">};</span>
+
+        <span class="s5">// Set layout for the background panel</span>
+        <span class="s1">backgroundPanel</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">BorderLayout</span><span class="s2">());</span>
+
+        <span class="s5">// Create a panel for buttons and set its layout</span>
+        <span class="s1">JPanel buttonPanel </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JPanel</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FlowLayout</span><span class="s2">(</span><span class="s1">FlowLayout</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">, </span><span class="s4">20</span><span class="s2">, </span><span class="s4">20</span><span class="s2">));</span>
+        <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">setOpaque</span><span class="s2">(</span><span class="s0">false</span><span class="s2">); </span><span class="s5">// Make the button panel transparent</span>
+
+        <span class="s5">// Add buttons to the button panel</span>
+        <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">signInButton</span><span class="s2">);</span>
+        <span class="s1">buttonPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">signUpButton</span><span class="s2">);</span>
+
+        <span class="s5">// Add components to the background panel</span>
+        <span class="s1">backgroundPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">welcomeLabel</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">NORTH</span><span class="s2">);</span>
+        <span class="s1">backgroundPanel</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">buttonPanel</span><span class="s2">, </span><span class="s1">BorderLayout</span><span class="s2">.</span><span class="s1">CENTER</span><span class="s2">);</span>
+
+        <span class="s5">// Set content pane to the background panel</span>
+        <span class="s1">setContentPane</span><span class="s2">(</span><span class="s1">backgroundPanel</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+
+
+    <span class="s0">private void </span><span class="s1">openSignInForm</span><span class="s2">() {</span>
+        <span class="s1">SignInForm signInForm </span><span class="s2">= </span><span class="s0">new </span><span class="s1">SignInForm</span><span class="s2">();</span>
+        <span class="s1">signInForm</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private void </span><span class="s1">openSignUpForm</span><span class="s2">() {</span>
+        <span class="s1">SignUpGUI signUpGUI </span><span class="s2">= </span><span class="s0">new </span><span class="s1">SignUpGUI</span><span class="s2">();</span>
+        <span class="s1">signUpGUI</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s0">this</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">SwingUtilities</span><span class="s2">.</span><span class="s1">invokeLater</span><span class="s2">(() </span><span class="s1">-&gt; </span><span class="s2">{</span>
+            <span class="s1">MainGUI mainGUI </span><span class="s2">= </span><span class="s0">new </span><span class="s1">MainGUI</span><span class="s2">();</span>
+            <span class="s1">mainGUI</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

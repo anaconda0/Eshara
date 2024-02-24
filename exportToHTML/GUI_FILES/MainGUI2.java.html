@@ -1,0 +1,134 @@
+<html>
+<head>
+<title>MainGUI2.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainGUI2.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+
+<span class="s0">import static </span><span class="s1">GUI_FILES</span><span class="s2">.</span><span class="s1">TextToSpeechUI</span><span class="s2">.</span><span class="s1">createStyledButton</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">MainGUI2 </span><span class="s2">{</span>
+
+    <span class="s0">public static void </span><span class="s1">main</span><span class="s2">(</span><span class="s1">String</span><span class="s2">[] </span><span class="s1">args</span><span class="s2">) {</span>
+        <span class="s1">SwingUtilities</span><span class="s2">.</span><span class="s1">invokeLater</span><span class="s2">(() </span><span class="s1">-&gt; </span><span class="s2">{</span>
+            <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s1">createMainFrame</span><span class="s2">();</span>
+            <span class="s1">JButton textToSpeechButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Text to Speech&quot;</span><span class="s2">);</span>
+            <span class="s1">JButton speechToTextButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Speech to Text&quot;</span><span class="s2">);</span>
+            <span class="s1">JButton textToImageButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Text to Image&quot;</span><span class="s2">);</span>
+            <span class="s1">JButton imageToTextButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Image to Text&quot;</span><span class="s2">);</span>
+            <span class="s1">JButton Logout </span><span class="s2">= </span><span class="s1">createStyledButton2</span><span class="s2">(</span><span class="s3">&quot;Logout&quot;</span><span class="s2">);</span>
+
+            <span class="s1">textToSpeechButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+                <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+                <span class="s1">TextToSpeechUI</span><span class="s2">.</span><span class="s1">display</span><span class="s2">();</span>
+            <span class="s2">});</span>
+            <span class="s1">speechToTextButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+                <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+                <span class="s1">SpeechToTextUI</span><span class="s2">.</span><span class="s1">display</span><span class="s2">();</span>
+            <span class="s2">});</span>
+            <span class="s1">textToImageButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+                <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+                <span class="s1">TextToImageUI</span><span class="s2">.</span><span class="s1">display</span><span class="s2">();</span>
+            <span class="s2">});</span>
+            <span class="s1">imageToTextButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+                <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+                <span class="s1">ImageToTextGUI</span><span class="s2">.</span><span class="s1">display</span><span class="s2">();</span>
+            <span class="s2">});</span>
+
+            <span class="s1">Logout</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+                <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+                <span class="s1">MainGUI</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+            <span class="s2">});</span>
+
+            <span class="s1">addComponentsToMainFrame</span><span class="s2">(</span><span class="s1">frame</span><span class="s2">, </span><span class="s1">textToSpeechButton</span><span class="s2">, </span><span class="s1">speechToTextButton</span><span class="s2">, </span><span class="s1">textToImageButton</span><span class="s2">, </span><span class="s1">imageToTextButton</span><span class="s2">, </span><span class="s1">Logout</span><span class="s2">);</span>
+        <span class="s2">});</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static </span><span class="s1">JFrame createMainFrame</span><span class="s2">() {</span>
+        <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">(</span><span class="s3">&quot;Text, Speech, and Image Application&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setDefaultCloseOperation</span><span class="s2">(</span><span class="s1">JFrame</span><span class="s2">.</span><span class="s1">EXIT_ON_CLOSE</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s4">600</span><span class="s2">, </span><span class="s4">400</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">GridLayout</span><span class="s2">(</span><span class="s4">5</span><span class="s2">, </span><span class="s4">1</span><span class="s2">));</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setResizable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">getContentPane</span><span class="s2">().</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+        <span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">frame</span><span class="s2">);</span>
+        <span class="s0">return </span><span class="s1">frame</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">JFrame frame</span><span class="s2">) {</span>
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s3">&quot;C:</span><span class="s0">\\</span><span class="s3">Users</span><span class="s0">\\</span><span class="s3">yhayt</span><span class="s0">\\</span><span class="s3">Desktop</span><span class="s0">\\</span><span class="s3">Speech To Text</span><span class="s0">\\</span><span class="s3">Sphinx extract</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">Java-Speech-Recognizer-Tutorial--Calculator-master</span><span class="s0">\\</span><span class="s3">!!New Specific Tutorial For JavaFX!!</span><span class="s0">\\</span><span class="s3">HANDSTALK APPLICATION</span><span class="s0">\\</span><span class="s3">resources_images</span><span class="s0">\\</span><span class="s3">ESHARA LOGO.png&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static </span><span class="s1">JButton createStyledButton</span><span class="s2">(</span><span class="s1">String text</span><span class="s2">) {</span>
+        <span class="s1">JButton button </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s3">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s4">25</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setBorder</span><span class="s2">(</span><span class="s1">BorderFactory</span><span class="s2">.</span><span class="s1">createLineBorder</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">, </span><span class="s4">5</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s4">250</span><span class="s2">, </span><span class="s4">150</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">addMouseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseAdapter</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">mouseEntered</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public void </span><span class="s1">mouseExited</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s0">return </span><span class="s1">button</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static </span><span class="s1">JButton createStyledButton2 </span><span class="s2">(</span><span class="s1">String text</span><span class="s2">)</span>
+    <span class="s2">{</span>
+        <span class="s1">JButton button2 </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+        <span class="s1">button2</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+        <span class="s1">button2</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">YELLOW</span><span class="s2">);</span>
+        <span class="s1">button2</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s3">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s4">25</span><span class="s2">));</span>
+        <span class="s1">button2</span><span class="s2">.</span><span class="s1">setBorder</span><span class="s2">(</span><span class="s1">BorderFactory</span><span class="s2">.</span><span class="s1">createLineBorder</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">, </span><span class="s4">5</span><span class="s2">));</span>
+        <span class="s1">button2</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s4">250</span><span class="s2">, </span><span class="s4">150</span><span class="s2">));</span>
+        <span class="s1">button2</span><span class="s2">.</span><span class="s1">addMouseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseAdapter</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">mouseEntered</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button2</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">ORANGE</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public void </span><span class="s1">mouseExited</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button2</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s0">return </span><span class="s1">button2</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">addComponentsToMainFrame</span><span class="s2">(</span><span class="s1">JFrame frame</span><span class="s2">, </span><span class="s1">JButton... buttons</span><span class="s2">) {</span>
+        <span class="s0">for </span><span class="s2">(</span><span class="s1">JButton button </span><span class="s2">: </span><span class="s1">buttons</span><span class="s2">) {</span>
+            <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">button</span><span class="s2">);</span>
+        <span class="s2">}</span>
+
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s3">&quot;Back to Home&quot;</span><span class="s2">);</span>
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">());</span>
+
+
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

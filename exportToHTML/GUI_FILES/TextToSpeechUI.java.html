@@ -1,0 +1,151 @@
+<html>
+<head>
+<title>TextToSpeechUI.java</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #7a7e85;}
+.s4 { color: #6aab73;}
+.s5 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+TextToSpeechUI.java</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">GUI_FILES</span><span class="s2">;</span>
+
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">AudioException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">Central</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">EngineException</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">synthesis</span><span class="s2">.</span><span class="s1">Synthesizer</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">speech</span><span class="s2">.</span><span class="s1">synthesis</span><span class="s2">.</span><span class="s1">SynthesizerModeDesc</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">javax</span><span class="s2">.</span><span class="s1">swing</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.*;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionEvent</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">ActionListener</span><span class="s2">;</span>
+<span class="s0">import </span><span class="s1">java</span><span class="s2">.</span><span class="s1">util</span><span class="s2">.</span><span class="s1">Locale</span><span class="s2">;</span>
+
+<span class="s0">public class </span><span class="s1">TextToSpeechUI </span><span class="s2">{</span>
+
+    <span class="s0">private static </span><span class="s1">TextToSpeech tts </span><span class="s2">= </span><span class="s0">new </span><span class="s1">TextToSpeech</span><span class="s2">(); </span><span class="s3">// Initialize GUI_FILES.TextToSpeechUI.TextToSpeech</span>
+
+    <span class="s0">public static </span><span class="s1">TextToSpeech getTts</span><span class="s2">() {</span>
+        <span class="s0">return </span><span class="s1">tts</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">setTts</span><span class="s2">(</span><span class="s1">TextToSpeech tts</span><span class="s2">) {</span>
+        <span class="s1">TextToSpeechUI</span><span class="s2">.</span><span class="s1">tts </span><span class="s2">= </span><span class="s1">tts</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static void </span><span class="s1">display</span><span class="s2">() {</span>
+        <span class="s1">JFrame frame </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JFrame</span><span class="s2">(</span><span class="s4">&quot;Text to Speech&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setSize</span><span class="s2">(</span><span class="s5">400</span><span class="s2">, </span><span class="s5">200</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setResizable</span><span class="s2">(</span><span class="s0">false</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLocationRelativeTo</span><span class="s2">(</span><span class="s0">null</span><span class="s2">);</span>
+        <span class="s1">JTextField textField </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JTextField</span><span class="s2">(</span><span class="s5">20</span><span class="s2">);</span>
+        <span class="s1">JButton speakButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s4">&quot;Speak&quot;</span><span class="s2">);</span>
+        <span class="s1">JButton backToHomeButton </span><span class="s2">= </span><span class="s1">createStyledButton</span><span class="s2">(</span><span class="s4">&quot;Back to Home&quot;</span><span class="s2">);</span>
+
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s4">&quot;&quot;</span><span class="s2">); </span><span class="s3">// Replace with the path to your image</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+
+        <span class="s1">speakButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">ActionListener</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">actionPerformed</span><span class="s2">(</span><span class="s1">ActionEvent e</span><span class="s2">) {</span>
+                <span class="s1">String text </span><span class="s2">= </span><span class="s1">textField</span><span class="s2">.</span><span class="s1">getText</span><span class="s2">();</span>
+                <span class="s1">tts</span><span class="s2">.</span><span class="s1">speak</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">addWindowListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">WindowAdapter</span><span class="s2">() {</span>
+            <span class="s1">@Override</span>
+            <span class="s0">public void </span><span class="s1">windowClosing</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">WindowEvent windowEvent</span><span class="s2">) {</span>
+                <span class="s1">tts</span><span class="s2">.</span><span class="s1">close</span><span class="s2">(); </span><span class="s3">// Deallocate synthesizer resources</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+
+        <span class="s1">backToHomeButton</span><span class="s2">.</span><span class="s1">addActionListener</span><span class="s2">(</span><span class="s1">e -&gt; </span><span class="s2">{</span>
+            <span class="s1">frame</span><span class="s2">.</span><span class="s1">dispose</span><span class="s2">();</span>
+            <span class="s1">MainGUI2</span><span class="s2">.</span><span class="s1">main</span><span class="s2">(</span><span class="s0">new </span><span class="s1">String</span><span class="s2">[]{});</span>
+        <span class="s2">});</span>
+
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setLayout</span><span class="s2">(</span><span class="s0">new </span><span class="s1">FlowLayout</span><span class="s2">());</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">textField</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">speakButton</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">add</span><span class="s2">(</span><span class="s1">backToHomeButton</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setVisible</span><span class="s2">(</span><span class="s0">true</span><span class="s2">);</span>
+    <span class="s2">}</span>
+
+    <span class="s0">private static void </span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">JFrame frame</span><span class="s2">) {</span>
+        <span class="s1">ImageIcon icon </span><span class="s2">= </span><span class="s0">new </span><span class="s1">ImageIcon</span><span class="s2">(</span><span class="s4">&quot;C:</span><span class="s0">\\</span><span class="s4">Users</span><span class="s0">\\</span><span class="s4">yhayt</span><span class="s0">\\</span><span class="s4">Desktop</span><span class="s0">\\</span><span class="s4">Semester 3</span><span class="s0">\\</span><span class="s4">OneNot Notebooks</span><span class="s0">\\</span><span class="s4">Object Oriented Programming (CCS2303)</span><span class="s0">\\</span><span class="s4">Material</span><span class="s0">\\</span><span class="s4">HandsTalk Project</span><span class="s0">\\</span><span class="s4">Creative Elements</span><span class="s0">\\</span><span class="s4">Logo</span><span class="s0">\\</span><span class="s4">Handstalk logo.png&quot;</span><span class="s2">);</span>
+        <span class="s1">frame</span><span class="s2">.</span><span class="s1">setIconImage</span><span class="s2">(</span><span class="s1">icon</span><span class="s2">.</span><span class="s1">getImage</span><span class="s2">());</span>
+    <span class="s2">}</span>
+
+    <span class="s0">static </span><span class="s1">JButton createStyledButton</span><span class="s2">(</span><span class="s1">String text</span><span class="s2">) {</span>
+        <span class="s1">JButton button </span><span class="s2">= </span><span class="s0">new </span><span class="s1">JButton</span><span class="s2">(</span><span class="s1">text</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setForeground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">WHITE</span><span class="s2">);</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setFont</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Font</span><span class="s2">(</span><span class="s4">&quot;Arial&quot;</span><span class="s2">, </span><span class="s1">Font</span><span class="s2">.</span><span class="s1">BOLD</span><span class="s2">, </span><span class="s5">14</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setBorder</span><span class="s2">(</span><span class="s1">BorderFactory</span><span class="s2">.</span><span class="s1">createLineBorder</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLACK</span><span class="s2">, </span><span class="s5">2</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">setPreferredSize</span><span class="s2">(</span><span class="s0">new </span><span class="s1">Dimension</span><span class="s2">(</span><span class="s5">150</span><span class="s2">, </span><span class="s5">50</span><span class="s2">));</span>
+        <span class="s1">button</span><span class="s2">.</span><span class="s1">addMouseListener</span><span class="s2">(</span><span class="s0">new </span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseAdapter</span><span class="s2">() {</span>
+            <span class="s0">public void </span><span class="s1">mouseEntered</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">BLUE</span><span class="s2">);</span>
+            <span class="s2">}</span>
+
+            <span class="s0">public void </span><span class="s1">mouseExited</span><span class="s2">(</span><span class="s1">java</span><span class="s2">.</span><span class="s1">awt</span><span class="s2">.</span><span class="s1">event</span><span class="s2">.</span><span class="s1">MouseEvent evt</span><span class="s2">) {</span>
+                <span class="s1">button</span><span class="s2">.</span><span class="s1">setBackground</span><span class="s2">(</span><span class="s1">Color</span><span class="s2">.</span><span class="s1">RED</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">});</span>
+        <span class="s0">return </span><span class="s1">button</span><span class="s2">;</span>
+    <span class="s2">}</span>
+
+    <span class="s0">public static class </span><span class="s1">TextToSpeech </span><span class="s2">{</span>
+
+        <span class="s0">private </span><span class="s1">Synthesizer synthesizer</span><span class="s2">;</span>
+
+        <span class="s0">public </span><span class="s1">TextToSpeech</span><span class="s2">() {</span>
+            <span class="s1">initSynthesizer</span><span class="s2">();</span>
+        <span class="s2">}</span>
+
+        <span class="s0">private void </span><span class="s1">initSynthesizer</span><span class="s2">() {</span>
+            <span class="s1">System</span><span class="s2">.</span><span class="s1">setProperty</span><span class="s2">(</span><span class="s4">&quot;freetts.voices&quot;</span><span class="s2">,</span>
+                    <span class="s4">&quot;com.sun.speech.freetts.en.us.cmu_us_kal.KevinVoiceDirectory&quot;</span><span class="s2">);</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">Central</span><span class="s2">.</span><span class="s1">registerEngineCentral</span><span class="s2">(</span><span class="s4">&quot;com.sun.speech.freetts&quot; </span><span class="s2">+</span>
+                        <span class="s4">&quot;.jsapi.FreeTTSEngineCentral&quot;</span><span class="s2">);</span>
+                <span class="s1">synthesizer </span><span class="s2">= </span><span class="s1">Central</span><span class="s2">.</span><span class="s1">createSynthesizer</span><span class="s2">(</span><span class="s0">new </span><span class="s1">SynthesizerModeDesc</span><span class="s2">(</span><span class="s1">Locale</span><span class="s2">.</span><span class="s1">US</span><span class="s2">));</span>
+                <span class="s1">synthesizer</span><span class="s2">.</span><span class="s1">allocate</span><span class="s2">();</span>
+                <span class="s1">synthesizer</span><span class="s2">.</span><span class="s1">resume</span><span class="s2">();</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">EngineException </span><span class="s2">| </span><span class="s1">AudioException e</span><span class="s2">) {</span>
+                <span class="s0">throw new </span><span class="s1">RuntimeException</span><span class="s2">(</span><span class="s1">e</span><span class="s2">);</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public void </span><span class="s1">speak</span><span class="s2">(</span><span class="s1">String text</span><span class="s2">) {</span>
+            <span class="s0">try </span><span class="s2">{</span>
+                <span class="s1">synthesizer</span><span class="s2">.</span><span class="s1">speakPlainText</span><span class="s2">(</span><span class="s1">text</span><span class="s2">, </span><span class="s0">null</span><span class="s2">);</span>
+                <span class="s1">synthesizer</span><span class="s2">.</span><span class="s1">waitEngineState</span><span class="s2">(</span><span class="s1">Synthesizer</span><span class="s2">.</span><span class="s1">QUEUE_EMPTY</span><span class="s2">);</span>
+            <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">InterruptedException e</span><span class="s2">) {</span>
+                <span class="s1">Thread</span><span class="s2">.</span><span class="s1">currentThread</span><span class="s2">().</span><span class="s1">interrupt</span><span class="s2">();</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+
+        <span class="s0">public void </span><span class="s1">close</span><span class="s2">() {</span>
+            <span class="s0">if </span><span class="s2">(</span><span class="s1">synthesizer </span><span class="s2">!= </span><span class="s0">null</span><span class="s2">) {</span>
+                <span class="s0">try </span><span class="s2">{</span>
+                    <span class="s1">synthesizer</span><span class="s2">.</span><span class="s1">deallocate</span><span class="s2">();</span>
+                <span class="s2">} </span><span class="s0">catch </span><span class="s2">(</span><span class="s1">EngineException e</span><span class="s2">) {</span>
+                    <span class="s0">throw new </span><span class="s1">RuntimeException</span><span class="s2">(</span><span class="s1">e</span><span class="s2">);</span>
+                <span class="s2">}</span>
+            <span class="s2">}</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>
