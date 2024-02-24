@@ -1,2 +1,2 @@
 # Eshara
- omcmunication between disabled (mute and deaf) and normal people
+ comcmunication between disabled (mute and deaf) and normal people
