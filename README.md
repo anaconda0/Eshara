@@ -18,7 +18,7 @@ To run this program, ensure you have the following installed:
 
 ## Usage
 1. Open the project in your preferred IDE.
-2. Compile and run the Main gui class in src folder in gui files
+2. Compile and run the Main gui class in src folder in gui files folder 
 3. Follow the on-screen instructions to communicate with individuals using the program.
 
 ## Features
